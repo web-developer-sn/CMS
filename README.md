@@ -35,5 +35,5 @@ A robust **College Management System** built with a **Next.js** frontend, **Node
 
 ---
 
-## 📂 Project Structure
+
 
