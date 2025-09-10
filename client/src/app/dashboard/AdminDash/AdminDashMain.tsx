@@ -200,6 +200,12 @@ const AdminDashMain = () => {
     { label: 'Logout', icon: <PowerSettingsNewOutlinedIcon fontSize={"small"} />, path: '#' },
   ];
 
+   const handleOnFullScren=()=>{
+     if (document.documentElement.requestFullscreen) {
+      document.documentElement.requestFullscreen();
+    }
+  }
+
   const renderMenu = () => (
     <Sheet
       className={`bg-white dark:bg-slate-800 transition-all duration-300 ${collapsed ? 'w-16' : 'w-64'} flex flex-col`}
@@ -373,7 +379,9 @@ const AdminDashMain = () => {
           </div>
 
           <div className="flex items-center gap-4">
+            <button onClick={handleOnFullScren}>
             <FullscreenIcon className="w-6 h-6 text-gray-700 dark:text-white cursor-pointer hover:text-sky-600 transition-colors" />
+            </button>
             <NotificationsActiveOutlinedIcon className="w-6 h-6 text-gray-700 dark:text-white cursor-pointer hover:text-sky-600 transition-colors" />
             <button className="flex items-center rounded-full gap-2 hover:bg-gray-100 dark:hover:bg-slate-700 p-1 transition-colors">
               <Avatar

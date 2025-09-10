@@ -16,7 +16,7 @@ import BiotechOutlinedIcon from '@mui/icons-material/BiotechOutlined';
 import ComputerOutlinedIcon from '@mui/icons-material/ComputerOutlined';
 import PublicOutlinedIcon from '@mui/icons-material/PublicOutlined';
 import { Edit } from "@mui/icons-material";
-
+import AddIcon from '@mui/icons-material/Add';
 const chartData = [
     { name: "Jan", value: 45 },
     { name: "Feb", value: 70 },
@@ -212,6 +212,7 @@ const TeacherDashBoard: React.FC = () => {
                     <CardContent>
                         <div className="flex justify-between items-center mb-4">
                             <Typography className="font-bold text-gray-700">Today's Lecture</Typography>
+                            <Button startDecorator={<AddIcon/>}>Add</Button>
                         </div>
 
                         <div className="w-full overflow-x-auto">
@@ -229,7 +230,7 @@ const TeacherDashBoard: React.FC = () => {
                                             <th className="py-2 px-4">Standard</th>
                                             <th className="py-2 px-4">Time</th>
                                             <th className="py-2 px-4">Duration</th>
-                                            <th className="py-2 px-4">Details</th>
+                                            {/* <th className="py-2 px-4">Details</th> */}
                                             <th className="py-2 px-4">Actions</th>
                                         </tr>
                                     </thead>
@@ -240,9 +241,9 @@ const TeacherDashBoard: React.FC = () => {
                                                 <td className="py-2 px-4">{lecture.standard}</td>
                                                 <td className="py-2 px-4">{lecture.time}</td>
                                                 <td className="py-2 px-4">{lecture.duration}</td>
-                                                <td className="py-2 px-4">
+                                                {/* <td className="py-2 px-4">
                                                     <Eye size={16} />
-                                                </td>
+                                                </td> */}
                                                 <td className="py-2 px-4 flex gap-2">
                                                     <Edit fontSize="small" />
                                                     <Trash2 size={16} className="cursor-pointer text-red-600" />

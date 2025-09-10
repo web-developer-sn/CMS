@@ -9,6 +9,7 @@ import { Search, Plus, RefreshCw, Download, Edit, Trash2 } from "lucide-react";
 import { Typography } from "@mui/joy";
 import { useMediaQuery } from "@mui/material";
 import { ColDef } from "ag-grid-community";
+import axios from "axios";
 
 interface ILecture {
     subjectName: string;
@@ -69,6 +70,19 @@ const Lectures = () => {
         { field: "reason", headerName: "Reason for Cancellation", minWidth: 200, flex: 1 },
         { headerName: "Actions", minWidth: 40, flex: 1, cellRenderer: actionCellRenderer }
     ];
+
+     React.useEffect(() => {
+        const getData = async () => {
+          try {
+            let res = await axios.get(
+              "http://localhost:5000/api/teacher/lectures",{  withCredentials: true,}
+            );
+        // setRowData(res.data)
+        console.log("data...",res.data)
+          } catch (error) {}
+        };
+        getData()
+      }, []);
 
     const defaultColDef = useMemo(() => ({
         sortable: true,

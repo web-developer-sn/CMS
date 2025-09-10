@@ -39,7 +39,7 @@ export default function Register() {
       {/* Left Side - Image */}
       <div className="w-full md:w-1/2 h-1/2 md:h-screen">
         <img
-          src="/bg-02.png"
+          src="/bg-01.png"
           alt="ChitChat Logo"
           className="w-full h-full object-cover"
         />
@@ -48,7 +48,7 @@ export default function Register() {
       {/* Right Side - Login Form */}
       <div className="w-full md:w-1/2 h-1/2 md:h-screen flex items-center justify-center p-4">
         <div className="w-full max-w-md bg-white p-6">
-          <h2 className="text-2xl font-semibold text-center text-blue-500 mb-4">Register</h2>
+          <h2 className="text-2xl font-semibold text-center text-sky-600 mb-4">Register</h2>
           {error && <p className="text-red-500 text-sm text-center mb-3">{error}</p>}
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
@@ -109,7 +109,7 @@ export default function Register() {
 
             <button
               type="submit"
-              className="w-full py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-all duration-300"
+              className="w-full py-3 bg-sky-600 text-white rounded-lg hover:bg-sky-600 transition-all duration-300"
             >
               {loading ? "Registering..." : "Register"}
             </button>
@@ -118,7 +118,7 @@ export default function Register() {
           <div className="mt-4 text-center">
             <p className="text-sm text-gray-500">Already have an account? <button
               onClick={() => router.push("/login")}
-              className="mt-2 text-blue-500 font-semibold hover:text-blue-700 hover:underline transition-all duration-300 ease-in-out"
+              className="mt-2 text-sky-500 font-semibold hover:text-sky-700 hover:underline transition-all duration-300 ease-in-out"
             >
               Login
             </button></p>

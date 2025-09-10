@@ -5,6 +5,7 @@ import AdminDashMain from './AdminDash/AdminDashMain';
 import TeacherDashMain from './TeacherDashboard/TeacherDashMain';
 import StudentDashMain from './studentDashboard/StudentDashMain';
 import withAuth from '../components/auth/withAuth';
+import Loader from '../lib/loader';
 
 const Dashboard = () => {
 
@@ -25,7 +26,7 @@ const Dashboard = () => {
   console.log("State role:", role);
 
   if (role === null) {
-    return <div>Loading... (Waiting for role)</div>;
+    return <Loader/>;
   }
 
   return (

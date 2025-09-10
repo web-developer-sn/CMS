@@ -1,9 +1,12 @@
 import mongoose, { Types } from "mongoose";
-import bcrypt from "bcryptjs";
-
 
 const userSchema = new mongoose.Schema({
-    name: {
+    firstName: {
+        type: String,
+        required: true,
+         minlength: 3,
+    },
+     lastName: {
         type: String,
         required: true,
 
@@ -14,21 +17,20 @@ const userSchema = new mongoose.Schema({
         required: true,
         lowercase: true,
     },
-    password: {
+    city:{
+        type:String,
+        required:false
+    },
+    country: {
         type: String,
-        required: true,
-        minlength: 6,
+        required: false,
+       
     },
-    role: {
+      address: {
         type: String,
-        enum: ['admin', 'principal', 'teacher', 'student'],
-        default: 'student',
-
+        required: false,
     },
-    createdAt: {
-        type: Date,
-        default: Date.now,
-    },
+    
 })
 
 

@@ -10,10 +10,17 @@ export const generateToken = (payload) => {
     return jwt.sign(payload, key, { expiresIn: expire })
 }
 
-export const verifyToken = (token) => {
+export const verifyToken = (req,res,next) => {
+    const token=req.cookies.token;
+    if(!token){
+        return res.status(401).json({message:"Unauthorized : No token"})
+    }
+
     try {
-        return jwt.verify(token, key)
+        const decode=jwt.verify(token, key)
+         req.user = decode; 
+         next()
     } catch (error) {
-        return null
+        return res.status(401).json({message:"Unauthorized :Invalid User"})
     }
 }

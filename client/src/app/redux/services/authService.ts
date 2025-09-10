@@ -8,6 +8,11 @@ export const registerUserAPI = async (name: string, email: string, password: str
 };
 
 export const loginUserAPI = async (email: string, password: string, role: string) => {
-  const response = await axios.post(`${API_BASE_URL}/api/auth/login`, { email, password, role });
+  const response = await axios.post(
+    `${API_BASE_URL}/api/auth/login`,
+    { email, password, role },
+    { withCredentials: true } // ✅ THIS IS MUST
+  );
   return response.data;
 };
+

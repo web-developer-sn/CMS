@@ -40,7 +40,7 @@ export default function Login() {
       {/* Right Side - Login Form */}
       <div className="w-full md:w-1/2 h-1/2 md:h-screen flex items-center justify-center p-4">
         <div className="w-full max-w-md bg-white p-6">
-          <h2 className="text-2xl font-semibold text-center text-teal-600 mb-4">Login</h2>
+          <h2 className="text-2xl font-semibold text-center text-sky-600 mb-4">Login</h2>
           {error && <p className="text-red-500 text-sm text-center mb-3">{error}</p>}
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
@@ -71,6 +71,7 @@ export default function Login() {
             </div>
             <div className="relative">
               <div className="absolute top-0 left-0 p-3">
+                
                 <AdminPanelSettingsOutlinedIcon sx={{ color: "gray", fontWeight: "400" }} />
               </div>
               <select
@@ -96,7 +97,7 @@ export default function Login() {
 
             <button
               type="submit"
-              className="w-full py-3 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition-all duration-300"
+              className="w-full py-3 bg-sky-600 text-white rounded-lg hover:bg-sky-700 transition-all duration-300"
             >
               {loading ? "Logging in..." : "Login"}
             </button>

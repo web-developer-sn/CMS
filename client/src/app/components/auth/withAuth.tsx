@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState, ComponentType } from "react";
 import { useRouter } from "next/navigation";
+import Loader from "@/app/lib/loader";
 
 type WithAuthProps = {
   [key: string]: any;
@@ -23,7 +24,7 @@ const withAuth = <P extends WithAuthProps>(WrappedComponent: ComponentType<P>) =
     }, [router]);
 
     if (isAuthenticated === null) {
-      return <div>Loading...</div>;
+      return <Loader/>;
     }
 
     return <WrappedComponent {...props} />;
