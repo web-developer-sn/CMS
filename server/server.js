@@ -21,7 +21,7 @@ app.use(cookieParser());
 app.use('/api', rootRouter)
 // app.use('/api/student', studentRoute)
 // app.use('/api/teacher', teacherRouter)
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
     console.log("Server listening on port", PORT)

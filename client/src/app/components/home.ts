@@ -80,7 +80,7 @@ export interface FooterSection {
 }
 
 export interface FooterLink {
-  label?: string;
+  title?: string;
   href?: string;
 }
 

@@ -9,6 +9,7 @@ import { Search, Plus, RefreshCw, Download, Edit, Trash2, Phone } from "lucide-r
 import { Avatar, Typography } from "@mui/joy";
 import { useMediaQuery } from "@mui/material";
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
+import { ColDef } from "ag-grid-community";
 interface IAllTeachers {
     avatar: string;
     name: string;
@@ -79,7 +80,7 @@ const AllTeachers = () => {
         },
     ]);
 
-    const avatarCellRenderer = (params: any) => (
+    const avatarCellRenderer = (params: {data: IAllTeachers, value: string}) => (
         <div className="flex items-center space-x-2">
             <Avatar
                 src={params.data.avatar}
@@ -91,13 +92,13 @@ const AllTeachers = () => {
         </div>
     );
 
-    const phoneCellRenderer = (params: any) => (
+    const phoneCellRenderer = (params: {value: string}) => (
         <div className="flex items-center space-x-1">
             <Phone size={14} className="text-green-500" />
             <span className="text-sm">{params.value}</span>
         </div>
     );
-     const genderCellRenderer = (params: any) => {
+     const genderCellRenderer = (params: {value: string}) => {
         const gender = params.value;
         let bgColor = "";
         if (gender === "Male") bgColor = "bg-green-100 text-green-600";
@@ -109,14 +110,14 @@ const AllTeachers = () => {
         );
     };
 
-      const addressCellRenderer = (params: any) => (
+      const addressCellRenderer = (params: {value: string}) => (
         <div className="flex items-center space-x-1">
             <span className="text-red-500"><LocationOnOutlinedIcon color="primary" fontSize="small"/></span>
             <span className="text-sm">{params.value}</span>
         </div>
     );
 
-    const actionCellRenderer = (params: any) => (
+    const actionCellRenderer = () => (
         <div className="flex space-x-2 justify-center">
             <button className="text-blue-500 hover:text-blue-700">
                 <Edit size={18} />
@@ -127,7 +128,7 @@ const AllTeachers = () => {
         </div>
     );
 
-    const [columnDefs] = useState<any[]>([
+    const [columnDefs] = useState<ColDef<IAllTeachers>[]>([
         { checkboxSelection: true, headerCheckboxSelection: true, width: 50 },
         { field: "name", headerName: "Name", minWidth: 160, flex: 1, cellRenderer: avatarCellRenderer },
         { field: "department", headerName: "Department", minWidth: 140, flex: 1 },

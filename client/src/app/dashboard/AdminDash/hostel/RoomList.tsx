@@ -8,6 +8,7 @@ import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import { Search, Plus, RefreshCw, Download, Edit, Trash2 } from "lucide-react";
 import { Typography } from "@mui/joy";
 import { useMediaQuery } from "@mui/material";
+import { ColDef } from "ag-grid-community";
 
 interface IRoomRecord {
     roomNumber: string;
@@ -52,7 +53,7 @@ const RoomList = () => {
         </div>
     );
 
-    const statusCellRenderer = (params: any) => {
+    const statusCellRenderer = (params: {value:string}) => {
         const status = params.value;
         const colorClass = status === 'Occupied' ? 'bg-green-100 text-green-700' : 'bg-orange-100 text-orange-700';
         return (
@@ -60,7 +61,7 @@ const RoomList = () => {
         );
     };
 
-    const [columnDefs] = useState<any[]>([
+    const [columnDefs] = useState<ColDef[]>([
         { checkboxSelection: true, headerCheckboxSelection: true, width: 70 },
         { field: "roomNumber", headerName: "Room No", width: 130 },
         { field: "roomType", headerName: "Room Type", width: 100 },

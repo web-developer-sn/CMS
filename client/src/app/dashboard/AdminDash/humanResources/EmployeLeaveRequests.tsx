@@ -8,6 +8,7 @@ import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import { Search, Plus, RefreshCw, Download, Edit, Trash2 } from "lucide-react";
 import { Typography, Avatar } from "@mui/joy";
 import { useMediaQuery } from "@mui/material";
+import { ColDef } from "ag-grid-community";
 
 interface IEmployeeLeaveRecord {
     employeeName: string;
@@ -121,7 +122,7 @@ const EmployeeLeaveRequests = () => {
         </div>
     );
 
-    const statusCellRenderer = (params: any) => {
+    const statusCellRenderer = (params: {value:string}) => {
         const status = params.value;
         const colorClass =
             status === 'Approved' ? 'bg-green-100 text-green-700' :
@@ -132,14 +133,14 @@ const EmployeeLeaveRequests = () => {
         );
     };
 
-    const employeeCellRenderer = (params: any) => (
+    const employeeCellRenderer = (params: {data:{employeeName:string, image:string}}) => (
         <div className="flex items-center space-x-2">
             <Avatar alt={params.data.employeeName} src={params.data.image} size="sm" />
             <span className="text-sm">{params.data.employeeName}</span>
         </div>
     );
 
-    const [columnDefs] = useState<any[]>([
+    const [columnDefs] = useState<ColDef[]>([
         { checkboxSelection: true, headerCheckboxSelection: true, width: 40 },
         { field: "employeeName", headerName: "Employee Name", width: 180, cellRenderer: employeeCellRenderer },
         { field: "employeeId", headerName: "Employee ID", width: 100 },

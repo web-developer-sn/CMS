@@ -41,9 +41,9 @@ const Lectures = () => {
         { subjectName: "Chemistry", className: "R201 C", date: "2019-02-22", time: "10:30", status: "Confirm", studentGroup: "Group C", duration: 60, location: "Room 305", attendanceCount: 30 }
     ]);
 
-    const statusCellRenderer = (params: any) => {
+    const statusCellRenderer = (params: {value: string}) => {
         const status = params.value;
-        let bgColor = status === "Confirm" ? "bg-green-100 text-green-600" : "bg-red-100 text-red-600";
+        const bgColor = status === "Confirm" ? "bg-green-100 text-green-600" : "bg-red-100 text-red-600";
         return (
             <span className={`px-2 py-1 rounded text-xs ${bgColor}`}>{status}</span>
         );
@@ -74,12 +74,14 @@ const Lectures = () => {
      React.useEffect(() => {
         const getData = async () => {
           try {
-            let res = await axios.get(
+            const res = await axios.get(
               "http://localhost:5000/api/teacher/lectures",{  withCredentials: true,}
             );
         // setRowData(res.data)
         console.log("data...",res.data)
-          } catch (error) {}
+          } catch (error) {
+            console.log("error", error)
+          }
         };
         getData()
       }, []);

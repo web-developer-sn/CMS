@@ -1,95 +1,94 @@
 'use client';
 
-import React, { useState } from 'react';
-import { Sheet, FormLabel, Typography, AccordionGroup, Accordion, AccordionSummary, ListItemContent, AccordionDetails, Stack, FormControl, Drawer } from '@mui/joy';
-import { Menu, Home, Users, Book, Settings } from 'lucide-react';
-import FullscreenIcon from '@mui/icons-material/Fullscreen';
-import NotificationsActiveOutlinedIcon from '@mui/icons-material/NotificationsActiveOutlined';
-import { Avatar, useMediaQuery } from '@mui/material';
+// import { logout } from '@/app/redux/actions/authActions';
 import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
-import DashboardCustomizeOutlinedIcon from '@mui/icons-material/DashboardCustomizeOutlined';
-import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
-import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined';
-import BusinessOutlinedIcon from '@mui/icons-material/BusinessOutlined';
-import FaceOutlinedIcon from '@mui/icons-material/FaceOutlined';
 import AirlineSeatIndividualSuiteOutlinedIcon from '@mui/icons-material/AirlineSeatIndividualSuiteOutlined';
-import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
-import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
-import ManageAccountsOutlinedIcon from '@mui/icons-material/ManageAccountsOutlined';
-import GiteOutlinedIcon from '@mui/icons-material/GiteOutlined';
+import BusinessOutlinedIcon from '@mui/icons-material/BusinessOutlined';
 import CalendarViewMonthOutlinedIcon from '@mui/icons-material/CalendarViewMonthOutlined';
+import DashboardCustomizeOutlinedIcon from '@mui/icons-material/DashboardCustomizeOutlined';
+import FaceOutlinedIcon from '@mui/icons-material/FaceOutlined';
+import FullscreenIcon from '@mui/icons-material/Fullscreen';
+import GiteOutlinedIcon from '@mui/icons-material/GiteOutlined';
 import HomeWorkOutlinedIcon from '@mui/icons-material/HomeWorkOutlined';
-import NavigateNextOutlinedIcon from '@mui/icons-material/NavigateNextOutlined';
 import LocalLibraryOutlinedIcon from '@mui/icons-material/LocalLibraryOutlined';
+import ManageAccountsOutlinedIcon from '@mui/icons-material/ManageAccountsOutlined';
+import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
+import NavigateNextOutlinedIcon from '@mui/icons-material/NavigateNextOutlined';
+import NotificationsActiveOutlinedIcon from '@mui/icons-material/NotificationsActiveOutlined';
+import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined';
+import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
 import PowerSettingsNewOutlinedIcon from '@mui/icons-material/PowerSettingsNewOutlined';
-import AdmissionInquiry from './frountOffice/AdmitionInq';
-import VisitorsBook from './frountOffice/visitorsBook';
-import Complaints from './frountOffice/Complaints';
-import AllTeachers from './teachers/AllTeachers';
-import AddTeacher from './teachers/AddTeacher';
-import EditTeacher from './teachers/EditTeacher';
-import AboutTeacher from './teachers/AboutTeacher';
-import TeacherTimeTable from './teachers/TeacherTimeTable';
-import AssignedTeacher from './teachers/AssignTeacher';
-import AllStudents from './students/AllStudents';
-import AddStudents from './students/AddStudents';
-import EditStudents from './students/EditStudents';
-import StudentAttendance from './students/StudentsAttendance';
-import AllCourses from './courses/AllCourses';
-import AddCourse from './courses/AddCourse';
-import EditCourse from './courses/EditCourse';
-import AllLibraryAsset from './library/AllLibraryAssets';
-import AddLibraryAsset from './library/AddLibraryAsset';
-import EditLibraryAsset from './library/EditLibraryAsset';
-import BookStatus from './library/BookStatus';
-import AllDepartment from './department/AllDepartment';
-import AddDepartments from './department/AddDepartment';
-import EditDepartments from './department/EditDepartment';
-import AllStaff from './staff/AllStaff';
-import AddStaff from './staff/AddStaff';
-import EditStaff from './staff/EditStaff';
-import StaffAttendance from './staff/staffAttendance';
-import AllHolidays from './Holidays/AllHoliday';
-import AddHoliday from './Holidays/AddHoliday';
-import EditHoliday from './Holidays/EditHoliday';
-import AllFees from './Fees/AllFees';
+import RemoveIcon from '@mui/icons-material/Remove';
+import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
+import { Accordion, AccordionDetails, AccordionGroup, AccordionSummary, Drawer, FormControl, FormLabel, ListItemContent, Sheet, Stack, Typography } from '@mui/joy';
+import { Avatar, useMediaQuery } from '@mui/material';
+import { Menu } from 'lucide-react';
+// import { useRouter } from "next/navigation";
+import { useState } from 'react';
+// import { useDispatch } from 'react-redux';
+import TeacherDashBoard from '../TeacherDashboard/Dashboard';
+import StudentDashboard from '../studentDashboard/Dashboard';
 import AddFees from './Fees/AddFees';
+import AllFees from './Fees/AllFees';
 import EditFees from './Fees/EditFees';
-import FeesType from './Fees/FeesType';
 import FeesDiscount from './Fees/FeesDiscount';
+import FeesType from './Fees/FeesType';
 import FeesReceipt from './Fees/feeReceipt';
+import AddHoliday from './Holidays/AddHoliday';
+import AllHolidays from './Holidays/AllHoliday';
+import EditHoliday from './Holidays/EditHoliday';
 import ClassList from './class/ClassList';
 import ClassTimeTable from './class/ClassTimeTable';
+import AddCourse from './courses/AddCourse';
+import AllCourses from './courses/AllCourses';
+import EditCourse from './courses/EditCourse';
+import AddDepartments from './department/AddDepartment';
+import AllDepartment from './department/AllDepartment';
+import EditDepartments from './department/EditDepartment';
+import AdmissionInquiry from './frountOffice/AdmitionInq';
+import Complaints from './frountOffice/Complaints';
+import VisitorsBook from './frountOffice/visitorsBook';
 import RoomList from './hostel/RoomList';
 import RoomType from './hostel/RoomType';
 import EmployeeLeaveRequests from './humanResources/EmployeLeaveRequests';
 import EmployeeLeaveBalance from './humanResources/EmployeeLeaveBalance';
-import LeaveTypes from './humanResources/LeaveTypes';
-import Holidays from './humanResources/Holidays';
-import TodaysAttendance from './humanResources/Today\'sAttendance';
 import EmployeeSalary from './humanResources/EmployeeSalary';
+import Holidays from './humanResources/Holidays';
+import LeaveTypes from './humanResources/LeaveTypes';
 import Payslip from './humanResources/Payslip';
-import TeacherDashBoard from '../TeacherDashboard/Dashboard';
-import StudentDashMain from '../studentDashboard/StudentDashMain';
-import StudentDashboard from '../studentDashboard/Dashboard';
-import { useDispatch } from 'react-redux';
-import { logout } from '@/app/redux/actions/authActions';
-import { useRouter } from "next/navigation";
+import TodaysAttendance from './humanResources/Today\'sAttendance';
+import AddLibraryAsset from './library/AddLibraryAsset';
+import AllLibraryAsset from './library/AllLibraryAssets';
+import BookStatus from './library/BookStatus';
+import EditLibraryAsset from './library/EditLibraryAsset';
+import AddStaff from './staff/AddStaff';
+import AllStaff from './staff/AllStaff';
+import EditStaff from './staff/EditStaff';
+import StaffAttendance from './staff/staffAttendance';
+import AddStudents from './students/AddStudents';
+import AllStudents from './students/AllStudents';
+import EditStudents from './students/EditStudents';
+import StudentAttendance from './students/StudentsAttendance';
+import AboutTeacher from './teachers/AboutTeacher';
+import AddTeacher from './teachers/AddTeacher';
+import AllTeachers from './teachers/AllTeachers';
+import AssignedTeacher from './teachers/AssignTeacher';
+import EditTeacher from './teachers/EditTeacher';
+import TeacherTimeTable from './teachers/TeacherTimeTable';
 
 const AdminDashMain = () => {
-  const dispatch = useDispatch();
-  const router = useRouter();
+  // const dispatch = useDispatch();
+  // const router = useRouter();
   const [collapsed, setCollapsed] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [selectedSubMenu, setSelectedSubMenu] = useState<string | null>("Teacher Dashboard");
   const isMobile = useMediaQuery('(max-width: 768px)');
-  const Logaout = () => {
-    alert("success")
-    dispatch(logout());
-    router.push("/login")
+  // const Logaout = () => {
+  //   alert("success")
+  //   dispatch(logout());
+  //   router.push("/login")
 
-  }
+  // }
   const menuItems = [
     {
       label: 'Dashboard', icon: <DashboardCustomizeOutlinedIcon fontSize={"small"} />, path: '#', subMenus: [
@@ -213,13 +212,13 @@ const AdminDashMain = () => {
       <div className="flex items-center justify-between p-4">
         {!collapsed && (
           <div className="flex items-center gap-4">
-            <img src="logo1.png" alt="Logo" className="w-8 h-8" />
+            {/* <img src="logo1.png" alt="Logo" className="w-8 h-8" /> */}
             <h1 className="text-xl font-bold text-sky-600">Smart</h1>
           </div>
         )}
         {collapsed && (
           <div className="flex items-center gap-4">
-            <img src="logo1.png" alt="Logo" className="w-8 h-8" />
+            {/* <img src="logo1.png" alt="Logo" className="w-8 h-8" /> */}
           </div>
         )}
       </div>

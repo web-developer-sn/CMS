@@ -8,6 +8,7 @@ import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import { Search, Plus, RefreshCw, Download, Edit, Trash2 } from "lucide-react";
 import { Typography, Avatar } from "@mui/joy";
 import { useMediaQuery } from "@mui/material";
+import { ColDef } from "ag-grid-community";
 
 interface IEmployeeLeaveRecord {
     employeeName: string;
@@ -50,7 +51,7 @@ const EmployeeLeaveBalance = () => {
         </div>
     );
 
-    const employeeCellRenderer = (params: any) => {
+    const employeeCellRenderer = (params: {value:string}) => {
         return (
             <div className="flex items-center space-x-2">
                 <Avatar src="/default-profile.png" alt={params.value} size="sm" />
@@ -59,7 +60,7 @@ const EmployeeLeaveBalance = () => {
         );
     };
 
-    const [columnDefs] = useState<any[]>([
+    const [columnDefs] = useState<ColDef[]>([
         { checkboxSelection: true, headerCheckboxSelection: true, width: 80 },
         { field: "employeeName", headerName: "Employee Name", width: 200, cellRenderer: employeeCellRenderer },
         { field: "previousBalance", headerName: "Previous Balance", width: 140 },

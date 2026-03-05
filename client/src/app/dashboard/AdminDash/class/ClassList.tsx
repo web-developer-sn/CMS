@@ -2,6 +2,7 @@
 
 import React, { useMemo, useState } from "react";
 import { AgGridReact } from "ag-grid-react";
+import { ColDef } from "ag-grid-community";
 import "ag-grid-community/styles/ag-theme-quartz.css";
 import NavigateNextOutlinedIcon from "@mui/icons-material/NavigateNextOutlined";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
@@ -51,7 +52,7 @@ const ClassList = () => {
         </div>
     );
 
-    const statusCellRenderer = (params: any) => {
+    const statusCellRenderer = (params:{value:string}) => {
         const status = params.value;
         const colorClass = status === 'Active' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700';
         return (
@@ -59,7 +60,7 @@ const ClassList = () => {
         );
     };
 
-    const [columnDefs] = useState<any[]>([
+    const [columnDefs] = useState<ColDef[]>([
         { checkboxSelection: true, headerCheckboxSelection: true, width: 40 },
         { field: "className", headerName: "Class Name", width: 140 },
         { field: "classCode", headerName: "Class Code", width: 100 },

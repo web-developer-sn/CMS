@@ -9,11 +9,11 @@ export default function NotFound() {
     return (
         <main className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-50 to-white px-6 py-16">
             <div className="max-w-xl text-center">
-                <img
+                {/* <img
                     src="/404-illustration.svg"
                     alt="Page Not Found Illustration"
                     className="w-full max-w-xs mx-auto mb-8"
-                />
+                /> */}
                 <h1 className="text-5xl md:text-6xl font-bold text-blue-700 mb-4">
                     404
                 </h1>

@@ -8,6 +8,7 @@ import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import { Search, Plus, RefreshCw, Download, Edit, Trash2 } from "lucide-react";
 import { Typography, Avatar } from "@mui/joy";
 import { useMediaQuery } from "@mui/material";
+import { ColDef } from "ag-grid-community";
 
 interface IEmployeeSalaryRecord {
     image: string;
@@ -49,14 +50,14 @@ const EmployeeSalary = () => {
         </div>
     );
 
-    const nameCellRenderer = (params: any) => (
+    const nameCellRenderer = (params: {value: string}) => (
         <div className="flex items-center space-x-2">
             <Avatar src="/default-profile.png" alt="Employee" size="sm" />
             <span>{params.value}</span>
         </div>
     );
 
-    const [columnDefs] = useState<any[]>([
+    const [columnDefs] = useState<ColDef<IEmployeeSalaryRecord>[]>([
         { checkboxSelection: true, headerCheckboxSelection: true, width: 80 },
         { field: "employeeName", headerName: "Employee Name", minWidth: 250, cellRenderer: nameCellRenderer },
         { field: "email", headerName: "Email", width: 180 },

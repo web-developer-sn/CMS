@@ -136,7 +136,7 @@ const AdmissionInquiry = () => {
         },
     ]);
 
-    const statusCellRenderer = (params: any) => {
+    const statusCellRenderer = (params: {value:string}) => {
         const status = params.value;
         let bgColor = "";
         if (status === "New") bgColor = "bg-green-100 text-green-600";
@@ -150,7 +150,7 @@ const AdmissionInquiry = () => {
         );
     };
 
-    const avatarCellRenderer = (params: any) => {
+    const avatarCellRenderer = (params: {data:{avatar:string},value:string}) => {
         return (
             <div className="flex items-center space-x-2">
                 <Avatar
@@ -164,21 +164,21 @@ const AdmissionInquiry = () => {
         );
     };
 
-    const phoneCellRenderer = (params: any) => (
+    const phoneCellRenderer = (params: {value:string}) => (
         <div className="flex items-center space-x-1">
             <Phone size={14} className="text-green-500" />
             <span className="text-sm">{params.value}</span>
         </div>
     );
 
-    const emailCellRenderer = (params: any) => (
+    const emailCellRenderer = (params: {value:string}) => (
         <div className="flex items-center space-x-1">
             <span className="text-red-500">✉</span>
             <span className="text-sm">{params.value}</span>
         </div>
     );
 
-    const actionCellRenderer = (params: any) => (
+    const actionCellRenderer = () => (
         <div className="flex space-x-2 justify-center">
             <button className="text-blue-500 hover:text-blue-700">
                 <Edit size={18} />

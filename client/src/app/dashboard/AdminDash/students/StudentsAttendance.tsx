@@ -8,13 +8,28 @@ import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import { Search, Plus, RefreshCw, Download, Edit, Trash2 } from "lucide-react";
 import { Avatar, Typography } from "@mui/joy";
 import { useMediaQuery } from "@mui/material";
+import { ColDef } from "ag-grid-community";
+
+interface IStudentAttendance {
+    rollNo: number;
+    avatar: string;
+    name: string;
+    class: string;
+    date: string;
+    status: string;
+    semester: string;
+    time: string;
+    reason: string;
+    notes: string;
+    approved: boolean;
+}
 
 const StudentAttendance = () => {
     const gridStyle = useMemo(() => ({ height: "100%", width: "100%" }), []);
     const isMobile = useMediaQuery('(max-width: 768px)');
     const [searchText, setSearchText] = useState("");
 
-    const [rowData] = useState<any[]>([
+    const [rowData] = useState<IStudentAttendance[]>([
         { rollNo: 1, avatar: "/avatars/avatar1.png", name: "Jenish Shah", class: "Class A", date: "02/25/2019", status: "Absent", semester: "Spring 2019", time: "", reason: "Family function", notes: "Leave for marriage", approved: false },
         { rollNo: 2, avatar: "/avatars/avatar2.png", name: "Priya Patel", class: "Class A", date: "02/17/2019", status: "Present", semester: "Spring 2019", time: "09:00", reason: "", notes: "", approved: true },
         { rollNo: 3, avatar: "/avatars/avatar3.png", name: "Mayank Jani", class: "Class B", date: "01/01/2020", status: "Present", semester: "Spring 2020", time: "09:00", reason: "", notes: "", approved: true },
@@ -27,14 +42,14 @@ const StudentAttendance = () => {
         { rollNo: 1, avatar: "/avatars/avatar10.png", name: "Jay Soni", class: "Class B", date: "02/27/2019", status: "Present", semester: "Spring 2019", time: "09:00", reason: "", notes: "", approved: true },
     ]);
 
-    const nameCellRenderer = (params: any) => (
+    const nameCellRenderer = (params: {data: IStudentAttendance, value: string}) => (
         <div className="flex items-center space-x-2">
             <Avatar src={params.data.avatar} alt={params.value} size="sm" variant="soft" />
             <span className="text-sm">{params.value}</span>
         </div>
     );
 
-    const statusCellRenderer = (params: any) => {
+    const statusCellRenderer = (params: {value: string}) => {
         const status = params.value;
         const badgeClass = status === "Present" ? "bg-green-100 text-green-600" : "bg-red-100 text-red-600";
         return (
@@ -42,7 +57,7 @@ const StudentAttendance = () => {
         );
     };
 
-    const approvedCellRenderer = (params: any) => (
+    const approvedCellRenderer = (params: {value: boolean}) => (
         <span className="text-sm">{params.value ? "true" : "false"}</span>
     );
 
@@ -57,7 +72,7 @@ const StudentAttendance = () => {
         </div>
     );
 
-    const [columnDefs] = useState<any[]>([
+    const [columnDefs] = useState<ColDef<IStudentAttendance>[]>([
         { checkboxSelection: true, headerCheckboxSelection: true, width: 40 },
         { field: "rollNo", headerName: "Roll No", minWidth: 70, flex: 1 },
         { field: "name", headerName: "Student Name", minWidth: 160, flex: 1, cellRenderer: nameCellRenderer },

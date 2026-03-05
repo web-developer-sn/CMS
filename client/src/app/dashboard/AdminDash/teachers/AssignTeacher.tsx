@@ -91,14 +91,14 @@ const AssignClassTeacher = () => {
         },
     ]);
 
-    const avatarCellRenderer = (params: any) => (
+    const avatarCellRenderer = (params: {data: IAssignClassTeacher, value: string}) => (
         <div className="flex items-center space-x-2">
             <Avatar src={params.data.avatar} alt={params.value} size="sm" variant="soft" />
             <span className="text-sm">{params.value}</span>
         </div>
     );
 
-    const statusCellRenderer = (params: any) => {
+    const statusCellRenderer = (params: {value: string}) => {
         const status = params.value;
         const isActive = status === "Active";
         return (
@@ -111,7 +111,7 @@ const AssignClassTeacher = () => {
         );
     };
 
-    const actionCellRenderer = (params: any) => (
+    const actionCellRenderer = () => (
         <div className="flex space-x-2 justify-center">
             <button className="text-blue-500 hover:text-blue-700">
                 <Edit size={18} />

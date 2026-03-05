@@ -1,36 +1,54 @@
 "use client";
-import { useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { loginRequest } from "../redux/actions/authActions";
-import { RootState } from "../redux/store";
-import { useRouter } from "next/navigation";
+import * as React from 'react'
+import { loginRequest } from '@/redux/actions/authActions';
+import { useAppDispatch } from '@/redux/hooks';
+import AdminPanelSettingsOutlinedIcon from '@mui/icons-material/AdminPanelSettingsOutlined';
 import LockIcon from '@mui/icons-material/Lock';
 import { Link } from "@mui/material";
-import AdminPanelSettingsOutlinedIcon from '@mui/icons-material/AdminPanelSettingsOutlined';
+import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import Image from 'next/image';
+
+
+interface ILoginForm{
+    email: string;
+    password: string;
+    role: string;
+}
 export default function Login() {
-  const dispatch = useDispatch();
-  const { loading, error, user } = useSelector((state: RootState) => state.auth);
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm<ILoginForm>();
   const router = useRouter();
-
-  useEffect(() => {
-    if (user) {
-      router.push("/dashboard");
-    }
-  }, [user, router]);
+ const dispatch = useAppDispatch()
 
 
-  const onSubmit = (data: any) => {
-    debugger;
-    dispatch(loginRequest(data.email, data.password, data?.role));
+ const onSubmit = (data: ILoginForm) => {
+
+    dispatch(
+      loginRequest({
+        email: data.email,
+        password: data.password,
+        role: data.role
+      })
+    );
+
   };
+
+
+  React.useEffect(() => {
+
+    const token = localStorage.getItem("token")
+
+    if (token) {
+      router.replace("/dashboard")
+    }
+
+  }, [router])
 
   return (
     <div className="min-h-screen w-full flex flex-col md:flex-row">
       {/* Left Side - Image */}
       <div className="w-full md:w-1/2 h-1/2 md:h-screen">
-        <img
+        <Image
           src="/bg-01.png"
           alt="ChitChat Logo"
           className="w-full h-full object-cover"
@@ -41,7 +59,7 @@ export default function Login() {
       <div className="w-full md:w-1/2 h-1/2 md:h-screen flex items-center justify-center p-4">
         <div className="w-full max-w-md bg-white p-6">
           <h2 className="text-2xl font-semibold text-center text-sky-600 mb-4">Login</h2>
-          {error && <p className="text-red-500 text-sm text-center mb-3">{error}</p>}
+          {/* {error && <p className="text-red-500 text-sm text-center mb-3">{error}</p>} */}
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
             <div className="relative">
@@ -99,13 +117,14 @@ export default function Login() {
               type="submit"
               className="w-full py-3 bg-sky-600 text-white rounded-lg hover:bg-sky-700 transition-all duration-300"
             >
-              {loading ? "Logging in..." : "Login"}
+              {/* {loading ? "Logging in..." : "Login"} */}
+              Login
             </button>
           </form>
 
           <div className="mt-4 text-center">
             <p className="text-sm text-gray-600">
-              Don't have an account?{" "}
+              Don&apos;t have an account?{" "}
               <button
                 onClick={() => router.push("/register")}
                 className="mt-2 text-blue-500 font-semibold hover:text-blue-700 hover:underline transition-all duration-300 ease-in-out"

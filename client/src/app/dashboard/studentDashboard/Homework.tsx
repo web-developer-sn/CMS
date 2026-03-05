@@ -1,10 +1,9 @@
 "use client";
 
-import * as React from "react";
-import { AgGridReact } from "ag-grid-react";
-import "ag-grid-community/styles/ag-theme-quartz.css";
-import NavigateNextOutlinedIcon from "@mui/icons-material/NavigateNextOutlined";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import NavigateNextOutlinedIcon from "@mui/icons-material/NavigateNextOutlined";
+import { Typography } from "@mui/joy";
+import { useMediaQuery } from "@mui/material";
 import {
   AllCommunityModule,
   ColDef,
@@ -12,10 +11,11 @@ import {
   ModuleRegistry,
   themeQuartz,
 } from "ag-grid-community";
-import { Search, Plus, RefreshCw, Download, Edit, Trash2 } from "lucide-react";
-import { Typography } from "@mui/joy";
-import { useMediaQuery } from "@mui/material";
+import "ag-grid-community/styles/ag-theme-quartz.css";
+import { AgGridReact } from "ag-grid-react";
 import axios from "axios";
+import { Download, Plus, RefreshCw, Search } from "lucide-react";
+import * as React from "react";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -114,7 +114,7 @@ const Homework = () => {
   React.useEffect(() => {
     const getData = async () => {
       try {
-        let res = await axios.get(
+        const res = await axios.get(
           "http://localhost:5000/api/student/homework",{  withCredentials: true,}
         );
     // setRowData(res.data)
@@ -122,21 +122,25 @@ const Homework = () => {
     if(res){
       setRowData(res.data)
     }
-      } catch (error) {}
+      } catch (error) {
+        if(error){
+          console.log("error")
+        }
+      }
     };
     getData()
     
   }, []);
-  const actionCellRenderer = () => (
-    <div className="flex space-x-2 justify-center">
-      <button className="text-blue-500 hover:text-blue-700">
-        <Edit size={18} />
-      </button>
-      <button className="text-red-500 hover:text-red-700">
-        <Trash2 size={18} />
-      </button>
-    </div>
-  );
+  // const actionCellRenderer = () => (
+  //   <div className="flex space-x-2 justify-center">
+  //     <button className="text-blue-500 hover:text-blue-700">
+  //       <Edit size={18} />
+  //     </button>
+  //     <button className="text-red-500 hover:text-red-700">
+  //       <Trash2 size={18} />
+  //     </button>
+  //   </div>
+  // );
 
   const [columnDefs] = React.useState<ColDef<IHomework>[]>(
     [

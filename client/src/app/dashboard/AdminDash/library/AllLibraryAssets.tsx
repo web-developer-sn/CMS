@@ -8,13 +8,27 @@ import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import { Search, Plus, RefreshCw, Download, Edit, Trash2 } from "lucide-react";
 import { Typography } from "@mui/joy";
 import { useMediaQuery } from "@mui/material";
+import { ColDef } from "ag-grid-community";
+
+interface ILibraryAsset {
+    bookNumber: string;
+    title: string;
+    subject: string;
+    purchaseDate: string;
+    department: string;
+    type: string;
+    status: string;
+    lastBorrowed: string;
+    borrower: string;
+    shelf: string;
+}
 
 const AllLibraryAsset = () => {
     const gridStyle = useMemo(() => ({ height: "100%", width: "100%" }), []);
     const isMobile = useMediaQuery('(max-width: 768px)');
     const [searchText, setSearchText] = useState("");
 
-    const [rowData] = useState([
+    const [rowData] = useState<ILibraryAsset[]>([
         { bookNumber: "B123451", title: "Web Programming", subject: "mathematics", purchaseDate: "02/25/2019", department: "civil", type: "news paper", status: "out of stock", lastBorrowed: "01/15/2022", borrower: "Jane Doe", shelf: "C3" },
         { bookNumber: "B123452", title: "Java Black Book", subject: "java", purchaseDate: "02/17/2019", department: "computer", type: "book", status: "in stock", lastBorrowed: "", borrower: "", shelf: "B2" },
         { bookNumber: "B123453", title: "Parallel Computing", subject: "networking", purchaseDate: "02/13/2019", department: "computer", type: "dvd", status: "out of stock", lastBorrowed: "", borrower: "", shelf: "C4" },
@@ -27,7 +41,7 @@ const AllLibraryAsset = () => {
         { bookNumber: "B123510", title: "Computer Fundamentals", subject: "animation", purchaseDate: "02/27/2019", department: "mathematics", type: "book", status: "issue", lastBorrowed: "03/01/2022", borrower: "Emily Davis", shelf: "A4" },
     ]);
 
-    const statusCellRenderer = (params: any) => {
+    const statusCellRenderer = (params: {value: string}) => {
         let bgColor = "";
         let textColor = "";
 
@@ -71,7 +85,7 @@ const AllLibraryAsset = () => {
         </div>
     );
 
-    const [columnDefs] = useState<any[]>([
+    const [columnDefs] = useState<ColDef<ILibraryAsset>[]>([
         { checkboxSelection: true, headerCheckboxSelection: true, width: 60 },
         { field: "bookNumber", headerName: "Book No", width: 110 },
         { field: "title", headerName: "Title", width: 150 },

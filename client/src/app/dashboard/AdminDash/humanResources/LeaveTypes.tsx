@@ -8,6 +8,7 @@ import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import { Search, Plus, RefreshCw, Download, Edit, Trash2 } from "lucide-react";
 import { Typography } from "@mui/joy";
 import { useMediaQuery } from "@mui/material";
+import { ColDef } from "ag-grid-community";
 
 interface ILeaveTypeRecord {
     leaveName: string;
@@ -48,7 +49,7 @@ const LeaveTypes = () => {
         </div>
     );
 
-    const statusCellRenderer = (params: any) => {
+    const statusCellRenderer = (params: {value: string}) => {
         const status = params.value;
         const colorClass = status === 'Active' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700';
         return (
@@ -56,7 +57,7 @@ const LeaveTypes = () => {
         );
     };
 
-    const [columnDefs] = useState<any[]>([
+    const [columnDefs] = useState<ColDef<ILeaveTypeRecord>[]>([
         { checkboxSelection: true, headerCheckboxSelection: true, width: 80 },
         { field: "leaveName", headerName: "Leave Name", width: 220 },
         { field: "leaveType", headerName: "Leave Type", width: 130 },

@@ -4,32 +4,7 @@ interface IFooter{
     footer:FooterSection
 }
  const Footer=( props:IFooter)=> {
-    console.log("footer.....",props)
-  const footerData = {
-    college: {
-      name: "Hamara College",
-      logo: "/logo.png",
-      description:
-        "A center of excellence for learning, innovation, and leadership.",
-    },
-    links: [
-      { title: "Home", href: "/" },
-      { title: "About Us", href: "/about" },
-      { title: "Admissions", href: "/admissions" },
-      { title: "Departments", href: "/departments" },
-      { title: "Contact", href: "/contact" },
-    ],
-    contact: {
-      address: "📍 123 College Road, Patna, Bihar",
-      phone: "📞 +91 9876500000",
-      email: "✉️ info@hamaracollege.ac.in",
-    },
-    social: [
-      { platform: "Facebook", icon: "fab fa-facebook-f", href: "#" },
-      { platform: "Twitter", icon: "fab fa-twitter", href: "#" },
-      { platform: "Instagram", icon: "fab fa-instagram", href: "#" },
-    ],
-  };
+ 
   const { collegeInfo, quickLinks, contact, social } = props?.footer;
 
   return (
@@ -38,7 +13,7 @@ interface IFooter{
         {/* College Info */}
         <div>
           <div className="flex items-center gap-2 mb-4">
-            <img src={collegeInfo?.logo} alt="Logo"  className="h-10 w-10" />
+            {/* <img src={collegeInfo?.logo} alt="Logo"  className="h-10 w-10" /> */}
             <h2 className="text-xl font-bold">{collegeInfo?.name}</h2>
           </div>
           <p className="text-gray-300">{collegeInfo?.description}</p>
@@ -51,7 +26,7 @@ interface IFooter{
             {quickLinks?.map((link:FooterLink, idx:number) => (
               <li key={idx}>
                 <a href={link?.href} className="hover:text-white transition">
-                  {link?.label}
+                  {link?.title}
                 </a>
               </li>
             ))}

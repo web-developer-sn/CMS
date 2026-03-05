@@ -1,6 +1,6 @@
 import* as  React from 'react'
 
- const Loader=() =>{
+ const Loader=({title}: {title?: string}) =>{
   return (
     <div className="flex items-center justify-center h-screen bg-black overflow-hidden">
       {/* Glowing Rings Container */}
@@ -15,7 +15,7 @@ import* as  React from 'react'
         {/* Inner Glassy Core with Gradient Glow */}
         <div className="absolute inset-[14px] rounded-full bg-gradient-to-br from-gray-800 via-black to-gray-900 backdrop-blur-[2px] shadow-inner flex items-center justify-center border border-gray-700">
           <span className="text-cyan-300 text-sm font-medium tracking-widest animate-pulse">
-            LOADING...
+            {title||"Loading...."}
           </span>
         </div>
 

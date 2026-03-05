@@ -8,6 +8,7 @@ import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import { Search, Plus, RefreshCw, Download, Edit, Trash2 } from "lucide-react";
 import { Typography } from "@mui/joy";
 import { useMediaQuery } from "@mui/material";
+import { ColDef } from "ag-grid-community";
 
 interface IHoliday {
     title: string;
@@ -51,7 +52,7 @@ const AllHolidays = () => {
         </div>
     );
 
-    const [columnDefs] = useState<any[]>([
+    const [columnDefs] = useState<ColDef[]>([
         { headerCheckboxSelection: true, checkboxSelection: true, width: 40 },
         { field: "title", headerName: "Title", minWidth: 140, flex: 1.2 },
         { field: "startDate", headerName: "Start Date", minWidth: 110, flex: 1 },

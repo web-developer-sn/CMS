@@ -8,6 +8,7 @@ import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import { Search, Plus, RefreshCw, Download, Edit, Trash2 } from "lucide-react";
 import { Typography, Avatar } from "@mui/joy";
 import { useMediaQuery } from "@mui/material";
+import { ColDef } from "ag-grid-community";
 
 interface IAttendanceRecord {
     employeeName: string;
@@ -48,7 +49,7 @@ const TodaysAttendance = () => {
         </div>
     );
 
-    const statusCellRenderer = (params: any) => {
+    const statusCellRenderer = (params: {value: string}) => {
         const status = params.value;
         const colorClass = status === 'present' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700';
         return (
@@ -56,14 +57,14 @@ const TodaysAttendance = () => {
         );
     };
 
-    const employeeCellRenderer = (params: any) => (
+    const employeeCellRenderer = (params: {value: string}) => (
         <div className="flex items-center space-x-2">
             <Avatar size="sm" />
             <span>{params.value}</span>
         </div>
     );
 
-    const [columnDefs] = useState<any[]>([
+    const [columnDefs] = useState<ColDef<IAttendanceRecord>[]>([
         { checkboxSelection: true, headerCheckboxSelection: true, width: 80 },
         { field: "employeeName", headerName: "Employee Name", minWidth: 250, cellRenderer: employeeCellRenderer },
         { field: "firstIn", headerName: "First In", width: 120 },
@@ -85,19 +86,19 @@ const TodaysAttendance = () => {
     return (
         <div className="p-4">
             <div className="flex py-4 items-center">
-                {!isMobile ? <h1 className="text-xl font-bold">Today's Attendance</h1> :
-                    <Typography className="text-sm font-bold whitespace-nowrap">Today's Attendance</Typography>}
+                {!isMobile ? <h1 className="text-xl font-bold">Today&apos;s Attendance</h1> :
+                    <Typography className="text-sm font-bold whitespace-nowrap">Today&apos;s Attendance</Typography>}
                 <NavigateNextOutlinedIcon fontSize="small" />
                 <HomeOutlinedIcon fontSize="small" />
                 <NavigateNextOutlinedIcon fontSize="small" />
                 <Typography fontSize={"small"}>HR</Typography>
                 <NavigateNextOutlinedIcon fontSize="small" />
-                <Typography fontSize={"small"}>Today's Attendance</Typography>
+                <Typography fontSize={"small"}>Today&apos;s Attendance</Typography>
             </div>
 
             <div className="bg-sky-100 py-4 dark:bg-sky-900 rounded-lg shadow">
                 <div className="flex items-center justify-between flex-wrap gap-2 px-4">
-                    {!isMobile && <Typography className="text-lg">Today's Attendance</Typography>}
+                    {!isMobile && <Typography className="text-lg">Today&apos;s Attendance</Typography>}
 
                     <div className="flex items-center space-x-2">
                         <div className="relative">

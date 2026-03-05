@@ -1,4 +1,3 @@
-import axios from "axios";
 import * as React from "react";
 import { HeaderSection } from "../home";
 
@@ -7,26 +6,6 @@ interface IProps{
 }
 export default function Header(props:IProps) {
   const [menuOpen, setMenuOpen] = React.useState(false);
- 
-  const headerContent = {
-    logo: {
-      src: "/logo.png",
-      alt: "Logo",
-      name: "Hamara College",
-    },
-    navLinks: [
-      { label: "Home", href: "/" },
-      { label: "About", href: "/about" },
-      { label: "Academics", href: "/academics" },
-      { label: "Admissions", href: "/admissions" },
-      { label: "Departments", href: "/departments" },
-      { label: "Contact", href: "/contact" },
-    ],
-    applyButton: {
-      label: "Apply Now",
-      href: "/apply",
-    },
-  };
   const { logo, navLinks, applyButton } = props?.header;
 
   return (
@@ -34,7 +13,7 @@ export default function Header(props:IProps) {
       <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center gap-2">
-          <img src={logo?.src} alt="Logo"  className="h-10 w-10" />
+          {/* <img src={logo?.src} alt="Logo"  className="h-10 w-10" /> */}
           <span className="text-xl md:text-2xl font-bold text-blue-800">
             {logo?.name}
           </span>

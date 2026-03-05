@@ -136,21 +136,21 @@ const VisitorsBook = () => {
         },
     ]);
 
-    const perposeVisitCellRenderer = (params: any) => {
-        const perposeVisit = params.value;
-        let bgColor = "";
-        if (perposeVisit === "New") bgColor = "bg-green-300 text-green-600";
-        else if (perposeVisit === "In Process") bgColor = "bg-purple-300 text-purple-600";
-        else if (perposeVisit === "Closed") bgColor = "bg-orange-300 text-orange-600";
+    // const perposeVisitCellRenderer = (params: {value:string}) => {
+    //     const perposeVisit = params.value;
+    //     let bgColor = "";
+    //     if (perposeVisit === "New") bgColor = "bg-green-300 text-green-600";
+    //     else if (perposeVisit === "In Process") bgColor = "bg-purple-300 text-purple-600";
+    //     else if (perposeVisit === "Closed") bgColor = "bg-orange-300 text-orange-600";
 
-        return (
-            <span className={`px-2 py-1 rounded text-xs ${bgColor}`}>
-                {perposeVisit}
-            </span>
-        );
-    };
+    //     return (
+    //         <span className={`px-2 py-1 rounded text-xs ${bgColor}`}>
+    //             {perposeVisit}
+    //         </span>
+    //     );
+    // };
 
-    const avatarCellRenderer = (params: any) => {
+    const avatarCellRenderer = (params: {data:{avatar:string},value:string}) => {
         return (
             <div className="flex items-center space-x-2">
                 <Avatar
@@ -164,21 +164,21 @@ const VisitorsBook = () => {
         );
     };
 
-    const phoneCellRenderer = (params: any) => (
+    const phoneCellRenderer = (params: {value:string}) => (
         <div className="flex items-center space-x-1">
             <Phone size={14} className="text-green-500" />
             <span className="text-sm">{params.value}</span>
         </div>
     );
 
-    const emailCellRenderer = (params: any) => (
-        <div className="flex items-center space-x-1">
-            <span className="text-red-500">✉</span>
-            <span className="text-sm">{params.value}</span>
-        </div>
-    );
+    // const emailCellRenderer = (params: {value:string}) => (
+    //     <div className="flex items-center space-x-1">
+    //         <span className="text-red-500">✉</span>
+    //         <span className="text-sm">{params.value}</span>
+    //     </div>
+    // );
 
-    const actionCellRenderer = (params: any) => (
+    const actionCellRenderer = () => (
         <div className="flex space-x-2 justify-center">
             <button className="text-blue-500 hover:text-blue-700">
                 <Edit size={18} />

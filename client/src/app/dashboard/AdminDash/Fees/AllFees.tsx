@@ -8,6 +8,7 @@ import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import { Search, Plus, RefreshCw, Download, Edit, Trash2 } from "lucide-react";
 import { Typography } from "@mui/joy";
 import { useMediaQuery } from "@mui/material";
+import { ColDef } from "ag-grid-community";
 
 interface IFeeRecord {
     rollNo: number;
@@ -52,7 +53,7 @@ const AllFees = () => {
         </div>
     );
 
-    const statusCellRenderer = (params: any) => {
+    const statusCellRenderer =(params: {value:string}) => {
         const status = params.value;
         const colorClass = status === 'paid' ? 'bg-green-100 text-green-700' : 'bg-orange-100 text-red-700';
         return (
@@ -60,7 +61,7 @@ const AllFees = () => {
         );
     };
 
-    const [columnDefs] = useState<any[]>([
+    const [columnDefs] = useState<ColDef[]>([
         { checkboxSelection: true, headerCheckboxSelection: true, width: 40 },
         { field: "rollNo", headerName: "Roll No", width: 80 },
         { field: "studentName", headerName: "Student Name", width: 160 },

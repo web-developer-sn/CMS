@@ -1,14 +1,14 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
-import { AgGridReact } from "ag-grid-react";
-import "ag-grid-community/styles/ag-theme-quartz.css";
-import NavigateNextOutlinedIcon from '@mui/icons-material/NavigateNextOutlined';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-import { AllCommunityModule, ColDef, iconSetQuartzLight, ModuleRegistry, themeQuartz } from "ag-grid-community";
-import { Search, Plus, RefreshCw, Download, Edit, Trash2 } from "lucide-react";
+import NavigateNextOutlinedIcon from '@mui/icons-material/NavigateNextOutlined';
 import { Typography } from "@mui/joy";
 import { useMediaQuery } from "@mui/material";
+import { AllCommunityModule, ColDef, iconSetQuartzLight, ModuleRegistry, themeQuartz } from "ag-grid-community";
+import "ag-grid-community/styles/ag-theme-quartz.css";
+import { AgGridReact } from "ag-grid-react";
+import { Download, Plus, RefreshCw, Search } from "lucide-react";
+import React, { useMemo, useState } from "react";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -48,16 +48,16 @@ const ExamSchedule = () => {
         { subject: "Economics", className: "Class 1", date: "2018-02-16T14:22:18Z", time: "10:30 AM", duration: "3 hours", roomNo: "105", totalMarks: 100, requiredMarks: 35 },
     ]);
 
-    const actionCellRenderer = () => (
-        <div className="flex space-x-2 justify-center">
-            <button className="text-blue-500 hover:text-blue-700">
-                <Edit size={18} />
-            </button>
-            <button className="text-red-500 hover:text-red-700">
-                <Trash2 size={18} />
-            </button>
-        </div>
-    );
+    // const actionCellRenderer = () => (
+    //     <div className="flex space-x-2 justify-center">
+    //         <button className="text-blue-500 hover:text-blue-700">
+    //             <Edit size={18} />
+    //         </button>
+    //         <button className="text-red-500 hover:text-red-700">
+    //             <Trash2 size={18} />
+    //         </button>
+    //     </div>
+    // );
 
     const [columnDefs] = useState<ColDef<IExamSchedule>[]>([
         { checkboxSelection: true, headerCheckboxSelection: true, width: 65 },

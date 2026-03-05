@@ -17,12 +17,11 @@ import Lectures from './Lectures';
 import LeaveRequestTeacher from './LeaveRequest';
 import ExamSchedule from './ExamSchedule';
 import SettingTeacher from './Settings';
-import { useDispatch } from 'react-redux';
-import { logout } from '@/app/redux/actions/authActions';
 import { useRouter } from "next/navigation";
+import { useAppDispatch } from '@/redux/hooks';
+import { logout } from '@/redux/actions/authActions';
 
 const TeacherDashMain = () => {
-    const dispatch = useDispatch();
     const router = useRouter();
     const [collapsed, setCollapsed] = useState(false);
     const [selectedIndex, setSelectedIndex] = useState(0);
@@ -37,11 +36,15 @@ const TeacherDashMain = () => {
         { label: 'Settings', icon: <SettingsOutlinedIcon fontSize="small" />, path: '#' },
         { label: 'Logout', icon: <PowerSettingsNewOutlinedIcon fontSize="small" />, path: '#' },
     ];
-    const Logaout = () => {
-        dispatch(logout());
-        router.push("/login")
+   const dispatch = useAppDispatch()
+const Logout = () => {
 
-    }
+  dispatch(logout())
+  localStorage.removeItem("token")
+
+  router.push("/login")
+
+}
      const handleOnFullScren=()=>{
      if (document.documentElement.requestFullscreen) {
       document.documentElement.requestFullscreen();
@@ -52,13 +55,13 @@ const TeacherDashMain = () => {
             <div className="flex items-center justify-between p-4">
                 {!collapsed && (
                     <div className="flex items-center gap-4">
-                        <img src="logo1.png" alt="Logo" className="w-8 h-8" />
+                        {/* <img src="logo1.png" alt="Logo" className="w-8 h-8" /> */}
                         <h1 className="text-xl font-bold text-sky-600">Smart</h1>
                     </div>
                 )}
                 {collapsed && (
                     <div className="flex items-center gap-4">
-                        <img src="logo1.png" alt="Logo" className="w-8 h-8" />
+                        {/* <img src="logo1.png" alt="Logo" className="w-8 h-8" /> */}
                     </div>
                 )}
             </div>
@@ -85,7 +88,7 @@ const TeacherDashMain = () => {
                                 setSelectedIndex(index);
                                 if (isMobile) setDrawerOpen(false);
                                 if (item?.label === "Logout") {
-                                    Logaout()
+                                    Logout()
                                 }
                             }}
                             sx={{
@@ -178,9 +181,7 @@ const TeacherDashMain = () => {
                     {menuItems[selectedIndex].label === "Settings" && (
                         <SettingTeacher />
                     )}
-                    {menuItems[selectedIndex].label === "Logout" && (
-                        <ExamSchedule />
-                    )}
+                    {menuItems[selectedIndex].label === "Logout" }
                 </main>
             </div>
         </div>

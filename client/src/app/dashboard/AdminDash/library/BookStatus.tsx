@@ -8,13 +8,27 @@ import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import { Search, Plus, RefreshCw, Download, Edit, Trash2 } from "lucide-react";
 import { Typography } from "@mui/joy";
 import { useMediaQuery } from "@mui/material";
+import { ColDef } from "ag-grid-community";
+
+interface IBookStatus {
+    bookId: number;
+    bookName: string;
+    status: string;
+    dateUpdated: string;
+    lastCheckedOut: string;
+    dueDate: string;
+    checkedOutBy: string;
+    reservedBy: string;
+    condition: string;
+    returnDate: string;
+}
 
 const BookStatus = () => {
     const gridStyle = useMemo(() => ({ height: "100%", width: "100%" }), []);
     const isMobile = useMediaQuery('(max-width: 768px)');
     const [searchText, setSearchText] = useState("");
 
-    const [rowData] = useState([
+    const [rowData] = useState<IBookStatus[]>([
         { bookId: 101, bookName: "Introduction to Algorithms", status: "Available", dateUpdated: "11/20/2024", lastCheckedOut: "", dueDate: "", checkedOutBy: "", reservedBy: "", condition: "Good", returnDate: "" },
         { bookId: 102, bookName: "Data Structures in C", status: "Checked Out", dateUpdated: "11/18/2024", lastCheckedOut: "11/17/2024", dueDate: "11/24/2024", checkedOutBy: "Student-001", reservedBy: "", condition: "Good", returnDate: "" },
         { bookId: 103, bookName: "Advanced Mathematics", status: "Reserved", dateUpdated: "11/19/2024", lastCheckedOut: "", dueDate: "", checkedOutBy: "", reservedBy: "Student-002", condition: "Excellent", returnDate: "" },
@@ -27,7 +41,7 @@ const BookStatus = () => {
         { bookId: 110, bookName: "The Complete Works of Shakespeare", status: "Checked Out", dateUpdated: "11/18/2024", lastCheckedOut: "11/10/2024", dueDate: "11/17/2024", checkedOutBy: "Student-005", reservedBy: "", condition: "Good", returnDate: "" },
     ]);
 
-    const statusCellRenderer = (params: any) => {
+    const statusCellRenderer = (params: {value: string}) => {
         let bgColor = "";
         let textColor = "";
 
@@ -75,7 +89,7 @@ const BookStatus = () => {
         </div>
     );
 
-    const [columnDefs] = useState<any[]>([
+    const [columnDefs] = useState<ColDef<IBookStatus>[]>([
         { checkboxSelection: true, headerCheckboxSelection: true, width: 30 },
         { field: "bookId", headerName: "Book ID", width: 100 },
         { field: "bookName", headerName: "Book Name", width: 200 },

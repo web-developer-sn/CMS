@@ -1,23 +1,19 @@
 "use client";
 
-import React from "react";
-import {
-    Typography,
-    Card,
-    CardContent,
-    Sheet,
-    Button,
-    Table,
-    Chip,
-    Avatar,
-    Tooltip as JoyTooltip,
-    IconButton
-} from "@mui/joy";
-import { useMediaQuery } from "@mui/material";
-import NavigateNextOutlinedIcon from "@mui/icons-material/NavigateNextOutlined";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import { PieChart, Pie, Cell, Tooltip as ReTooltip, ResponsiveContainer, LineChart, Line, XAxis, YAxis, BarChart, Bar, Legend } from "recharts";
-import { FileText, Download, Eye, Pencil, Trash2 } from "lucide-react";
+import NavigateNextOutlinedIcon from "@mui/icons-material/NavigateNextOutlined";
+import {
+    Avatar,
+    Card,
+    Chip,
+    IconButton,
+    Tooltip as JoyTooltip,
+    Sheet,
+    Typography
+} from "@mui/joy";
+// import { useMediaQuery } from "@mui/material";
+import { Eye, FileText, Pencil, Trash2 } from "lucide-react";
+import { Bar, BarChart, Cell, Legend, Line, LineChart, Pie, PieChart, Tooltip as ReTooltip, ResponsiveContainer, XAxis, YAxis } from "recharts";
 
 const pieData = [
     { name: "Math", value: 40, color: "#0284C7" },
@@ -89,7 +85,7 @@ const books = [
 ];
 
 const StudentDashboard = () => {
-    const isMobile = useMediaQuery("(max-width: 768px)");
+    // const isMobile = useMediaQuery("(max-width: 768px)");
 
     return (
         <div className="p-4 space-y-6 max-w-screen-2xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-4">

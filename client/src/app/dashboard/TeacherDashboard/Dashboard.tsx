@@ -1,22 +1,21 @@
 "use client";
 
-import React, { useState } from "react";
-import { Typography, Card, CardContent, Button, Table, Sheet } from "@mui/joy";
-import NavigateNextOutlinedIcon from "@mui/icons-material/NavigateNextOutlined";
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import { useMediaQuery } from "@mui/material";
-import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
-import { Pencil, Trash2, Eye } from "lucide-react";
-import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
-import ScienceOutlinedIcon from '@mui/icons-material/ScienceOutlined';
-import FunctionsOutlinedIcon from '@mui/icons-material/FunctionsOutlined';
-import ColorLensOutlinedIcon from '@mui/icons-material/ColorLensOutlined';
-import BusinessCenterOutlinedIcon from '@mui/icons-material/BusinessCenterOutlined';
-import BiotechOutlinedIcon from '@mui/icons-material/BiotechOutlined';
-import ComputerOutlinedIcon from '@mui/icons-material/ComputerOutlined';
-import PublicOutlinedIcon from '@mui/icons-material/PublicOutlined';
 import { Edit } from "@mui/icons-material";
 import AddIcon from '@mui/icons-material/Add';
+import BiotechOutlinedIcon from '@mui/icons-material/BiotechOutlined';
+import BusinessCenterOutlinedIcon from '@mui/icons-material/BusinessCenterOutlined';
+import ColorLensOutlinedIcon from '@mui/icons-material/ColorLensOutlined';
+import ComputerOutlinedIcon from '@mui/icons-material/ComputerOutlined';
+import FunctionsOutlinedIcon from '@mui/icons-material/FunctionsOutlined';
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import NavigateNextOutlinedIcon from "@mui/icons-material/NavigateNextOutlined";
+import PublicOutlinedIcon from '@mui/icons-material/PublicOutlined';
+import ScienceOutlinedIcon from '@mui/icons-material/ScienceOutlined';
+import { Button, Card, CardContent, Sheet, Table, Typography } from "@mui/joy";
+import { useMediaQuery } from "@mui/material";
+import { Trash2 } from "lucide-react";
+import React from "react";
+import { Cell, Line, LineChart, Pie, PieChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 const chartData = [
     { name: "Jan", value: 45 },
     { name: "Feb", value: 70 },
@@ -54,8 +53,16 @@ const todayLectures = [
     { subject: "Mathematics", standard: "Standard 9", time: "09:00 AM", duration: "40 Min" },
 ];
 
+interface ILineTooltipProps {
+    active?: boolean;
+    payload?: {
+        value: number;
+    }[];
+    label?: string;
+}
+
 // Custom LineChart Tooltip
-const CustomLineTooltip = ({ active, payload, label }: any) => {
+const CustomLineTooltip = ({ active, payload, label }: ILineTooltipProps): React.JSX.Element | null => {
     if (active && payload && payload.length) {
         return (
             <div className="bg-black text-white text-xs p-2 rounded shadow">
@@ -67,8 +74,16 @@ const CustomLineTooltip = ({ active, payload, label }: any) => {
     return null;
 };
 
+interface IPieTooltipProps {
+    active?: boolean;
+    payload?: {
+        name: string;
+        value: number;
+    }[];
+}
+
 // Custom PieChart Tooltip
-const CustomPieTooltip = ({ active, payload }: any) => {
+const CustomPieTooltip = ({ active, payload }: IPieTooltipProps): React.JSX.Element | null => {
     if (active && payload && payload.length) {
         return (
             <div className="bg-green-500 text-white text-xs p-2 rounded shadow">
@@ -104,20 +119,20 @@ const TeacherDashBoard: React.FC = () => {
                 <CardContent className="flex flex-col md:flex-row items-center md:items-start md:justify-between gap-6">
                     {/* Image Section */}
                     <div className="flex-shrink-0 w-full md:w-auto flex justify-center md:justify-start">
-                        <img
+                        {/* <img
                             src="https://www.einfosoft.com/templates/admin/smartangular/source/light/assets/images/pages/welcome.png"
                             alt="Welcome"
                             className="w-64 md:w-80"
-                        />
+                        /> */}
                     </div>
 
                     {/* Text Section */}
                     <div className="w-full md:flex-1 text-center md:text-left flex flex-col justify-center">
                         <Typography level="h4" className="font-bold text-gray-700">
-                            Welcome back <span className="text-blue-600">Ashton Cox!</span>
+                            Welcome back <span className="text-blue-600">Ashton Cox</span>
                         </Typography>
                         <Typography className="mt-2 text-gray-500">
-                            We would like to take this opportunity to welcome you to our practice and to thank you for choosing our platform.
+                            We would like to take this opportunity to welcome you to our practice and to thank you for choosing our platform
                         </Typography>
                     </div>
                 </CardContent>
@@ -211,7 +226,7 @@ const TeacherDashBoard: React.FC = () => {
                 <Card className="col-span-2">
                     <CardContent>
                         <div className="flex justify-between items-center mb-4">
-                            <Typography className="font-bold text-gray-700">Today's Lecture</Typography>
+                            <Typography className="font-bold text-gray-700">Today&apos;s Lecture</Typography>
                             <Button startDecorator={<AddIcon/>}>Add</Button>
                         </div>
 

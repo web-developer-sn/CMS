@@ -9,6 +9,7 @@ import { Search, Plus, RefreshCw, Download, Edit, Trash2, Phone, Mail } from "lu
 import { Avatar, Typography } from "@mui/joy";
 import { useMediaQuery } from "@mui/material";
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
+import { ColDef } from "ag-grid-community";
 
 interface IStaff {
     name: string;
@@ -41,41 +42,41 @@ const AllStaff = () => {
         { name: "Elsie Cruz", avatar: "/avatars/avatar10.png", department: "Administration", role: "Clerk", mobile: "1234567890", email: "test@email.com", address: "11, Shyam appt.", status: "Active", joiningDate: "02/25/2018", gender: "Female" },
     ]);
 
-    const nameCellRenderer = (params: any) => (
+    const nameCellRenderer = (params: {data: IStaff, value: string}) => (
         <div className="flex items-center space-x-2">
             <Avatar src={params.data.avatar} alt={params.value} size="sm" variant="soft" />
             <span className="text-sm">{params.value}</span>
         </div>
     );
 
-    const mobileCellRenderer = (params: any) => (
+    const mobileCellRenderer = (params: {value: string}) => (
         <div className="flex items-center space-x-1 text-sm">
             <Phone size={14} className="text-green-500" />
             <span>{params.value}</span>
         </div>
     );
 
-    const emailCellRenderer = (params: any) => (
+    const emailCellRenderer = (params: {value: string}) => (
         <div className="flex items-center space-x-1 text-sm">
             <Mail className="text-red-500" size={14} />
             <span>{params.value}</span>
         </div>
     );
 
-    const addressCellRenderer = (params: any) => (
+    const addressCellRenderer = (params: {value: string}) => (
         <div className="flex items-center space-x-1 text-sm">
             <LocationOnOutlinedIcon className="text-blue-500" fontSize="small" />
             <span>{params.value}</span>
         </div>
     );
 
-    const genderCellRenderer = (params: any) => {
+    const genderCellRenderer = (params: {value: string}) => {
         const gender = params.value;
         const color = gender === "Male" ? "bg-green-100 text-green-600" : "bg-purple-100 text-purple-600";
         return <span className={`px-2 py-1 rounded text-xs ${color}`}>{gender}</span>;
     };
 
-    const actionCellRenderer = (params: any) => (
+    const actionCellRenderer = () => (
         <div className="flex space-x-2 justify-center">
             <button className="text-blue-500 hover:text-blue-700">
                 <Edit size={18} />
@@ -86,7 +87,7 @@ const AllStaff = () => {
         </div>
     );
 
-    const [columnDefs] = useState<any[]>([
+    const [columnDefs] = useState<ColDef<IStaff>[]>([
         { checkboxSelection: true, headerCheckboxSelection: true, width: 40 },
         { field: "name", headerName: "Name", minWidth: 150, flex: 1, cellRenderer: nameCellRenderer },
         { field: "department", headerName: "Department", minWidth: 120, flex: 1 },

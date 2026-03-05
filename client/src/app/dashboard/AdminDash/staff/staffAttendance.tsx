@@ -8,13 +8,30 @@ import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import { Search, Plus, RefreshCw, Download, Edit, Trash2 } from "lucide-react";
 import { Avatar, Typography } from "@mui/joy";
 import { useMediaQuery } from "@mui/material";
+import { ColDef } from "ag-grid-community";
+
+interface IStaffAttendanceRecord {
+    
+    employeeId: string;
+    name: string;
+    avatar: string;
+    designation: string;
+    date: string;
+    checkIn: string;
+    break: string;
+    checkOut: string;
+    totalHours: string;
+    department: string;
+    shift: string;
+    attendanceStatus: string;
+}
 
 const StaffAttendance = () => {
     const gridStyle = useMemo(() => ({ height: "100%", width: "100%" }), []);
     const isMobile = useMediaQuery('(max-width: 768px)');
     const [searchText, setSearchText] = useState("");
 
-    const rowData = [
+    const [rowData] = useState<IStaffAttendanceRecord[]>([
         { employeeId: "E12345", name: "John Deo", avatar: "/avatars/avatar1.png", designation: "Admin Officer", date: "2024-10-08", checkIn: "10:30", break: "01:15", checkOut: "19:37", totalHours: "08:02", department: "Admin", shift: "Day", attendanceStatus: "Present" },
         { employeeId: "E12346", name: "Sarah Smith", avatar: "/avatars/avatar2.png", designation: "Library Assistant", date: "2024-10-08", checkIn: "10:32", break: "01:00", checkOut: "19:30", totalHours: "08:10", department: "Library", shift: "Day", attendanceStatus: "Absent" },
         { employeeId: "E12347", name: "Edna Gilbert", avatar: "/avatars/avatar3.png", designation: "Library Clerk", date: "2024-10-08", checkIn: "10:42", break: "01:10", checkOut: "19:32", totalHours: "08:08", department: "Library", shift: "Day", attendanceStatus: "Absent" },
@@ -25,16 +42,16 @@ const StaffAttendance = () => {
         { employeeId: "E12352", name: "Kara Thompson", avatar: "/avatars/avatar7.png", designation: "Library Assistant", date: "2024-10-08", checkIn: "10:40", break: "01:07", checkOut: "19:30", totalHours: "08:12", department: "Library", shift: "Day", attendanceStatus: "Present" },
         { employeeId: "E12353", name: "Joseph Nye", avatar: "/avatars/avatar8.png", designation: "Library Clerk", date: "2024-10-08", checkIn: "10:28", break: "01:00", checkOut: "19:32", totalHours: "08:02", department: "Library", shift: "Day", attendanceStatus: "Present" },
         { employeeId: "E12354", name: "Ricardo Wynn", avatar: "/avatars/avatar9.png", designation: "Placement Coordinator", date: "2024-10-08", checkIn: "10:38", break: "01:15", checkOut: "19:37", totalHours: "08:00", department: "Placement", shift: "Day", attendanceStatus: "Present" },
-    ];
+    ]);
 
-    const nameCellRenderer = (params: any) => (
+    const nameCellRenderer = (params: {data: IStaffAttendanceRecord, value: string}) => (
         <div className="flex items-center space-x-2">
             <Avatar src={params.data.avatar} alt={params.value} size="sm" variant="soft" />
             <span className="text-sm">{params.value}</span>
         </div>
     );
 
-    const attendanceStatusRenderer = (params: any) => {
+    const attendanceStatusRenderer = (params: {value: string}) => {
         const status = params.value;
         const color = status === "Present" ? "bg-green-100 text-green-600" : "bg-red-100 text-red-600";
         return <span className={`px-2 py-1 rounded text-xs ${color}`}>{status}</span>;
@@ -51,8 +68,8 @@ const StaffAttendance = () => {
         </div>
     );
 
-    const [columnDefs] = useState<any[]>([
-        { headerCheckboxSelection: true, checkboxSelection: true, width: 40, field: undefined as any },
+    const [columnDefs] = useState<ColDef<IStaffAttendanceRecord>[]>([
+        { headerCheckboxSelection: true, checkboxSelection: true, width: 40 },
         { field: "employeeId", headerName: "Employee ID", minWidth: 110, flex: 1 },
         { field: "name", headerName: "Name", minWidth: 150, flex: 1.5, cellRenderer: nameCellRenderer },
         { field: "designation", headerName: "Designation", minWidth: 160, flex: 1.5 },

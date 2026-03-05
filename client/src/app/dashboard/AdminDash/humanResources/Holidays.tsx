@@ -8,6 +8,7 @@ import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import { Search, Plus, RefreshCw, Download, Edit, Trash2 } from "lucide-react";
 import { Typography } from "@mui/joy";
 import { useMediaQuery } from "@mui/material";
+import { ColDef } from "ag-grid-community";
 
 interface IHolidayRecord {
     holidayName: string;
@@ -49,7 +50,7 @@ const Holidays = () => {
         </div>
     );
 
-    const statusCellRenderer = (params: any) => {
+    const statusCellRenderer = (params: {value: string}) => {
         const status = params.value;
         const colorClass = status === 'Approved' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700';
         return (
@@ -57,7 +58,7 @@ const Holidays = () => {
         );
     };
 
-    const [columnDefs] = useState<any[]>([
+    const [columnDefs] = useState<ColDef<IHolidayRecord>[]>([
         { checkboxSelection: true, headerCheckboxSelection: true, width: 80 },
         { field: "holidayName", headerName: "Holiday Name", width: 200 },
         { field: "shift", headerName: "Shift", width: 100 },

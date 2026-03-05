@@ -1,7 +1,6 @@
 import authModel from "../models/auth.model.js";
 import bcrypt from "bcryptjs";
 import { generateToken } from "../config/jwt.js";
-import jwt from "jsonwebtoken";
 export const register = async (req, res, next) => {
   try {
     let email = req.body.email;
@@ -87,7 +86,7 @@ export const login = async (req, res, next) => {
         .json({
           status: 201,
           action: "success",
-          message: "User  exist",
+          message: "User login successfully",
           data: user,
           token,
         });

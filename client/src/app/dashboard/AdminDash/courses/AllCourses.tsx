@@ -99,11 +99,14 @@ const AllCourses = () => {
               transition={{ duration: 0.4, delay: 0.1 }}
             >
               {/* Image */}
-              <img
+              {/* 
+               <img
                 src={course.image}
                 alt={course.title}
                 className="w-full h-40 object-cover"
               />
+               */}
+             
 
               {/* Content */}
               <div className="p-4 flex flex-col flex-1">

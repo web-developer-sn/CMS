@@ -9,6 +9,7 @@ import { Search, Plus, RefreshCw, Download, Edit, Trash2, Phone, Mail } from "lu
 import { Avatar, Typography } from "@mui/joy";
 import { useMediaQuery } from "@mui/material";
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
+import { ColDef } from "ag-grid-community";
 
 interface IStudent {
     rollNo: number;
@@ -41,21 +42,21 @@ const AllStudents = () => {
         { rollNo: 9, avatar: "/avatars/avatar9.png", name: "Smita Parikh", email: "test@email.com", gender: "female", mobile: "1234567898", department: "mathematics", dob: "09/25/2005", address: "258 Fir St", parentMobile: "0987654329", profileStatus: "complete" },
     ]);
 
-    const nameCellRenderer = (params: any) => (
+    const nameCellRenderer = (params: {data: IStudent, value: string}) => (
         <div className="flex items-center space-x-2">
             <Avatar src={params.data.avatar} alt={params.value} size="sm" variant="soft" />
             <span className="text-sm">{params.value}</span>
         </div>
     );
 
-    const emailCellRenderer = (params: any) => (
+    const emailCellRenderer = (params: {value: string}) => (
         <div className="flex items-center space-x-1 text-sm">
             <Mail className="text-red-500" size={14} />
             <span>{params.value}</span>
         </div>
     );
 
-    const genderCellRenderer = (params: any) => {
+    const genderCellRenderer = (params: {value: string}) => {
         const gender = params.value;
         const color = gender === "male" ? "bg-green-100 text-green-600" : "bg-purple-100 text-purple-600";
         return (
@@ -63,21 +64,21 @@ const AllStudents = () => {
         );
     };
 
-    const mobileCellRenderer = (params: any) => (
+    const mobileCellRenderer = (params: {value: string}) => (
         <div className="flex items-center space-x-1 text-sm">
             <Phone size={14} className="text-green-500" />
             <span>{params.value}</span>
         </div>
     );
 
-    const addressCellRenderer = (params: any) => (
+    const addressCellRenderer = (params: {value: string}) => (
         <div className="flex items-center space-x-1 text-sm">
             <LocationOnOutlinedIcon className="text-blue-500" fontSize="small" />
             <span>{params.value}</span>
         </div>
     );
 
-    const actionCellRenderer = (params: any) => (
+    const actionCellRenderer = () => (
         <div className="flex space-x-2 justify-center">
             <button className="text-blue-500 hover:text-blue-700">
                 <Edit size={18} />
@@ -88,7 +89,7 @@ const AllStudents = () => {
         </div>
     );
 
-    const [columnDefs] = useState<any[]>([
+    const [columnDefs] = useState<ColDef<IStudent>[]>([
         { checkboxSelection: true, headerCheckboxSelection: true, width: 40 },
         { field: "rollNo", headerName: "Roll No", minWidth: 70, flex: 1 },
         { field: "name", headerName: "Name", minWidth: 160, flex: 1, cellRenderer: nameCellRenderer },

@@ -17,12 +17,9 @@ import Homework from './Homework';
 import TimeTable from './TimeTable';
 import LeaveRequest from './LeaveRequest';
 import SettingStudent from './Setting';
-import { useDispatch } from 'react-redux';
-import { logout } from '@/app/redux/actions/authActions';
 import { useRouter } from "next/navigation";
 
 const StudentDashMain = () => {
-    const dispatch = useDispatch();
     const router = useRouter();
     const [collapsed, setCollapsed] = useState(false);
     const [selectedIndex, setSelectedIndex] = useState(0);
@@ -38,7 +35,6 @@ const StudentDashMain = () => {
         { label: 'Logout', icon: <PowerSettingsNewOutlinedIcon fontSize="small" />, path: '#' },
     ];
     const Logaout = () => {
-        dispatch(logout());
         router.push("/login")
 
     }
@@ -54,13 +50,13 @@ const StudentDashMain = () => {
             <div className="flex items-center justify-between p-4">
                 {!collapsed && (
                     <div className="flex items-center gap-4">
-                        <img src="logo1.png" alt="Logo" className="w-8 h-8" />
+                        {/* <img src="logo1.png" alt="Logo" className="w-8 h-8" /> */}
                         <h1 className="text-xl font-bold text-sky-600">Smart</h1>
                     </div>
                 )}
                 {collapsed && (
                     <div className="flex items-center gap-4">
-                        <img src="logo1.png" alt="Logo" className="w-8 h-8" />
+                        {/* <img src="logo1.png" alt="Logo" className="w-8 h-8" /> */}
                     </div>
                 )}
             </div>

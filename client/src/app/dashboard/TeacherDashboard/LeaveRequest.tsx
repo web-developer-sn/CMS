@@ -40,7 +40,7 @@ const LeaveRequestTeacher = () => {
         { leaveType: "Sick Leave", startDate: "2024-12-15", endDate: "2024-12-17", totalDays: 3, status: "Approved", dateSubmitted: "2024-12-01", reason: "Flu", approver: "Principal Smith", comments: "Wishing you a speedy recovery!" },
     ]);
 
-    const statusCellRenderer = (params: any) => {
+    const statusCellRenderer = (params: {value: string}) => {
         const status = params.value;
         let bgColor = "";
         if (status === "Approved") bgColor = "bg-green-100 text-green-600";
@@ -54,7 +54,7 @@ const LeaveRequestTeacher = () => {
         );
     };
 
-    const actionCellRenderer = (params: any) => (
+    const actionCellRenderer = () => (
         <div className="flex space-x-2 justify-center">
             <button className="text-blue-500 hover:text-blue-700">
                 <Edit size={18} />

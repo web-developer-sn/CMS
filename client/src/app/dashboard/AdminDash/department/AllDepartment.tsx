@@ -8,13 +8,25 @@ import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import { Search, Plus, RefreshCw, Download, Edit, Trash2, Phone, Mail } from "lucide-react";
 import { Avatar, Typography } from "@mui/joy";
 import { useMediaQuery } from "@mui/material";
+import { ColDef } from "ag-grid-community";
+
+interface IDepartment {
+    department: string;
+    head: string;
+    phone: string;
+    email: string;
+    capacity: number;
+    year: number;
+    faculty: number;
+    avatar: string;
+}
 
 const AllDepartment = () => {
     const gridStyle = useMemo(() => ({ height: "100%", width: "100%" }), []);
     const isMobile = useMediaQuery('(max-width: 768px)');
     const [searchText, setSearchText] = useState("");
 
-    const [rowData] = useState([
+    const [rowData] = useState<IDepartment[]>([
         { department: "mechanical", head: "Pooja Sarma", phone: "(123)456789", email: "test@example.com", capacity: 125, year: 1985, faculty: 30, avatar: "/avatars/avatar1.png" },
         { department: "civil", head: "Sanjay Chohan", phone: "(123)456789", email: "test@example.com", capacity: 300, year: 1989, faculty: 25, avatar: "/avatars/avatar2.png" },
         { department: "science", head: "Sarah Smith", phone: "(123)456789", email: "test@example.com", capacity: 100, year: 2014, faculty: 15, avatar: "/avatars/avatar3.png" },
@@ -27,21 +39,21 @@ const AllDepartment = () => {
         { department: "management", head: "Rajesh Malhotra", phone: "(123)456789", email: "test@example.com", capacity: 125, year: 1989, faculty: 12, avatar: "/avatars/avatar5.png" }
     ]);
 
-    const headCellRenderer = (params: any) => (
+    const headCellRenderer = (params: {data: IDepartment, value: string}) => (
         <div className="flex items-center space-x-2">
             <Avatar src={params.data.avatar} alt={params.value} size="sm" variant="soft" />
             <span className="text-sm">{params.value}</span>
         </div>
     );
 
-    const phoneCellRenderer = (params: any) => (
+    const phoneCellRenderer = (params: {value:string}) => (
         <div className="flex items-center space-x-1 text-sm">
             <Phone size={14} className="text-green-500" />
             <span>{params.value}</span>
         </div>
     );
 
-    const emailCellRenderer = (params: any) => (
+    const emailCellRenderer = (params: {value:string})=> (
         <div className="flex items-center space-x-1 text-sm">
             <Mail className="text-red-500" size={14} />
             <span>{params.value}</span>
@@ -59,7 +71,7 @@ const AllDepartment = () => {
         </div>
     );
 
-    const [columnDefs] = useState<any[]>([
+    const [columnDefs] = useState<ColDef<IDepartment>[]>([
         { checkboxSelection: true, headerCheckboxSelection: true, width: 40 },
         { field: "department", headerName: "Department Name", minWidth: 140, flex: 1.5 },
         { field: "head", headerName: "Head of Department", minWidth: 180, flex: 2, cellRenderer: headCellRenderer },
