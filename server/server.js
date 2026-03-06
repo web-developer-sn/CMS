@@ -7,8 +7,12 @@ import rootRouter from './routes/rootRoutes.js'
 import { swaggerSpec, swaggerUi } from "./swagger.js"
 dotenv.config()
 const app = express();
+const allowedOrigins = [
+  process.env.ORIGIN,
+  process.env.SERVER
+];
 app.use(cors({
-  origin: process.env.ORIGIN || 'http://localhost:3000', 
+  origin: allowedOrigins, 
   credentials: true,
 }));
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
