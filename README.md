@@ -5,7 +5,6 @@ A robust **College Management System** built with a **Next.js** frontend, **Node
 ---
 
 ## 🚀 Features
-
 ✅ **Role-Based Access Management**  
 ✅ **Student Information System**  
 ✅ **Library Management System**  
