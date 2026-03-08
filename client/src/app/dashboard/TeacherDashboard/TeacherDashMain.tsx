@@ -36,14 +36,9 @@ const TeacherDashMain = ({ user }: { user: { name: string; role: string } }) => 
         { label: 'Settings', icon: <SettingsOutlinedIcon fontSize="small" />, path: '#' },
         { label: 'Logout', icon: <PowerSettingsNewOutlinedIcon fontSize="small" />, path: '#' },
     ];
-
-const Logout = () => {
-
  const dispatch=useAppDispatch();
-    const Logaout = () => {
+const Logout = () => {
 dispatch(logoutRequest())
-
-    }
 
 }
      const handleOnFullScren=()=>{
