@@ -1,8 +1,7 @@
 export interface User {
-  password?: string
-  name?: string
-  email?: string
-  role?:string
+  name: string
+  email: string
+  role: string
 }
 
 export interface AuthState {
@@ -12,7 +11,7 @@ export interface AuthState {
 }
 
 export interface LoginPayload {
-  email?: string
-  password?: string
-  role?:string
+  email: string
+  password: string
+  role: string
 }

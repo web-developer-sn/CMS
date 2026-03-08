@@ -1,45 +1,41 @@
-'use client';
-import React, {  useState } from 'react';
-import AdminDashMain from './AdminDash/AdminDashMain';
-import TeacherDashMain from './TeacherDashboard/TeacherDashMain';
-import StudentDashMain from './studentDashboard/StudentDashMain';
-import Loader from '../lib/loader';
-import ProtectedRoute from '../components/ProtectedRoute';
+'use client'
+
+import * as React from 'react'
+import AdminDashMain from './AdminDash/AdminDashMain'
+import TeacherDashMain from './TeacherDashboard/TeacherDashMain'
+import StudentDashMain from './studentDashboard/StudentDashMain'
+import Loader from '../lib/loader'
+import ProtectedRoute from '../components/ProtectedRoute'
+import { useAppSelector } from '@/redux/hooks'
 
 const Dashboard = () => {
 
-  const [role] = useState<string | null>("student");
+  const user = useAppSelector((state) => state.auth.user)
+  const loading = useAppSelector((state) => state.auth.loading)
 
-  // useEffect(() => {
-  //   if (typeof window !== 'undefined') {
-  //     const storedRole = localStorage.getItem('role');
-  //     console.log("Raw localStorage role:", storedRole);
-  //     if (storedRole) {
-  //       setRole(storedRole.trim());
-  //     } else {
-  //       setRole('');
-  //     }
-  //   }
-  // }, []);
+  const role = user?.role;
+  console.log("role", role, user,loading);
+  if (loading) {
+    return <Loader />
+  }
 
-  console.log("State role:", role);
-
-  if (role === null) {
-    return <Loader/>;
+  if (!role) {
+    return <Loader />
   }
 
   return (
     <ProtectedRoute>
-    <div>
-      {role === 'admin' && <AdminDashMain />}
-      {role === 'teacher' && <TeacherDashMain />}
-      {role === 'student' && <StudentDashMain />}
-      {role !== 'admin' && role !== 'teacher' && role !== 'student' && (
-        <div>Unknown role: &quot;{role}&quot;</div>
-      )}
-    </div>
-    </ProtectedRoute>
-  );
-};
+      <div>
+        {role === 'admin' && <AdminDashMain user={user}/>}
+        {role === 'teacher' && <TeacherDashMain user={user} />}
+        {role === 'student' && <StudentDashMain user={user} />}
 
-export default Dashboard
+        {!['admin','teacher','student'].includes(role) && (
+          <div>Unknown role: "{role}"</div>
+        )}
+      </div>
+    </ProtectedRoute>
+  )
+}
+
+export default React.memo(Dashboard)

@@ -18,8 +18,10 @@ import TimeTable from './TimeTable';
 import LeaveRequest from './LeaveRequest';
 import SettingStudent from './Setting';
 import { useRouter } from "next/navigation";
+import { useAppDispatch } from '@/redux/hooks';
+import { logoutRequest } from '@/redux/actions/authActions';
 
-const StudentDashMain = () => {
+const StudentDashMain = ({ user }: { user: { name: string; role: string } }) => {
     const router = useRouter();
     const [collapsed, setCollapsed] = useState(false);
     const [selectedIndex, setSelectedIndex] = useState(0);
@@ -34,8 +36,9 @@ const StudentDashMain = () => {
         { label: 'Settings', icon: <SettingsOutlinedIcon fontSize="small" />, path: '#' },
         { label: 'Logout', icon: <PowerSettingsNewOutlinedIcon fontSize="small" />, path: '#' },
     ];
+    const dispatch=useAppDispatch();
     const Logaout = () => {
-        router.push("/login")
+dispatch(logoutRequest())
 
     }
 
@@ -69,9 +72,9 @@ const StudentDashMain = () => {
                         sx={{ borderRadius: 2, width: 150, height: 150 }}
                     />
                     <Typography level="title-md" className="font-semibold">
-                        Pushpanjali Gupta
+                       {user?.name||""}
                     </Typography>
-                    <p className="text-sm text-gray-500 dark:text-gray-300">Student</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-300">{user?.role}</p>
                 </div>
             )}
 

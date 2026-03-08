@@ -75,20 +75,19 @@ import AllTeachers from './teachers/AllTeachers';
 import AssignedTeacher from './teachers/AssignTeacher';
 import EditTeacher from './teachers/EditTeacher';
 import TeacherTimeTable from './teachers/TeacherTimeTable';
+import { useAppDispatch } from '@/redux/hooks';
+import { logoutRequest } from '@/redux/actions/authActions';
 
-const AdminDashMain = () => {
-  // const dispatch = useDispatch();
-  // const router = useRouter();
+const AdminDashMain = ({ user }: { user: { name: string; role: string } }) => {
   const [collapsed, setCollapsed] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [selectedSubMenu, setSelectedSubMenu] = useState<string | null>("Teacher Dashboard");
   const isMobile = useMediaQuery('(max-width: 768px)');
-  // const Logaout = () => {
-  //   alert("success")
-  //   dispatch(logout());
-  //   router.push("/login")
+   const dispatch=useAppDispatch();
+    const Logaout = () => {
+dispatch(logoutRequest())
 
-  // }
+    }
   const menuItems = [
     {
       label: 'Dashboard', icon: <DashboardCustomizeOutlinedIcon fontSize={"small"} />, path: '#', subMenus: [
@@ -265,82 +264,89 @@ const AdminDashMain = () => {
               alt="User Avatar"
               sx={{ borderRadius: 2, width: 150, height: 150 }}
             />
-            <FormLabel className="font-semibold">Pushpanjali Gupta</FormLabel>
-            <p className="text-sm text-gray-500 dark:text-gray-300">Admin</p>
+            <FormLabel className="font-semibold">{user?.name}</FormLabel>
+            <p className="text-sm text-gray-500 dark:text-gray-300">{user?.role}</p>
           </div>
         )}
 
-        {menuItems.map((item, index) => (
-          <Accordion
-            key={index}
-            component="a"
-            href={item.path}
-            sx={{
-              borderRadius: 2,
-              overflow: 'hidden',
-              mb: 1,
-              transition: 'all 0.3s ease',
-              '&:hover': {
-                boxShadow: 'md',
-                transform: 'translateY(-1px)',
-              },
-              '& .MuiAccordionSummary-root': { borderRadius: 0 },
-              '& .MuiAccordionDetails-root': { borderRadius: 0 },
-            }}
-          >
-            <AccordionSummary
-              className="accordion-summary"
-              indicator={
-                !collapsed && item.label !== 'Logout' && (
-                  <span className="flex items-center" >
-                    <AddIcon fontSize="small" className="accordion-indicator add" />
-                    <RemoveIcon fontSize="small" className="accordion-indicator remove" />
-                  </span>
-                )
-              }
+      {menuItems.map((item, index) => (
+  <Accordion
+    key={index}
+    component="div"
+    onClick={() => {
+      if (item.label === "Logout") {
+       Logaout()
+      }
+    }}
+    sx={{
+      borderRadius: 2,
+      overflow: 'hidden',
+      mb: 1,
+      transition: 'all 0.3s ease',
+      '&:hover': {
+        boxShadow: 'md',
+        transform: 'translateY(-1px)',
+      },
+      '& .MuiAccordionSummary-root': { borderRadius: 0 },
+      '& .MuiAccordionDetails-root': { borderRadius: 0 },
+    }}
+  >
+    <AccordionSummary
+      className="accordion-summary"
+      indicator={
+        !collapsed && item.label !== 'Logout' && (
+          <span className="flex items-center">
+            <AddIcon fontSize="small" className="accordion-indicator add" />
+            <RemoveIcon fontSize="small" className="accordion-indicator remove" />
+          </span>
+        )
+      }
+    >
+      <div className="min-w-[40px] flex justify-center items-center text-xl">
+        {item.icon}
+      </div>
+
+      {!collapsed && (
+        <ListItemContent>
+          <Typography level="title-md" className="accordion-label">
+            {item.label}
+          </Typography>
+        </ListItemContent>
+      )}
+    </AccordionSummary>
+
+    {item.subMenus && !collapsed && (
+      <AccordionDetails>
+        <Stack spacing={1.5}>
+          {item.subMenus.map((sub, subIndex) => (
+            <FormControl
+              key={subIndex}
+              orientation="horizontal"
+              sx={{ pl: '36px', cursor: 'pointer' }}
+              onClick={() => {
+                setSelectedSubMenu(sub.label);
+                if (isMobile) setDrawerOpen(false);
+              }}
             >
-              <div className="min-w-[40px] flex justify-center items-center text-xl">
-                {item.icon}
-              </div>
-              {!collapsed && (
-                <ListItemContent >
-                  <Typography level="title-md" className="accordion-label" >
-                    {item.label}
-                  </Typography>
-                </ListItemContent>
-              )}
-            </AccordionSummary>
-
-            {item.subMenus && !collapsed && (
-              <AccordionDetails >
-                <Stack spacing={1.5}>
-                  {item.subMenus.map((sub, subIndex) => (
-                    <FormControl
-                      key={subIndex}
-                      orientation="horizontal"
-                      sx={{ pl: '36px', cursor: 'pointer' }}
-                      onClick={() => {
-                        setSelectedSubMenu(sub.label);
-                        if (isMobile) setDrawerOpen(false);
-
-                      }}
-                    >
-                      <FormLabel
-                        className={`text-left flex items-center gap-2 hover:text-sky-600 ${selectedSubMenu === sub.label ? 'text-sky-600 font-semibold' : ''
-                          }`}
-                      >
-                        {selectedSubMenu === sub.label && (
-                          <NavigateNextOutlinedIcon fontSize="small" />
-                        )}
-                        <p>{sub.label}</p>
-                      </FormLabel>
-                    </FormControl>
-                  ))}
-                </Stack>
-              </AccordionDetails>
-            )}
-          </Accordion>
-        ))}
+              <FormLabel
+                className={`text-left flex items-center gap-2 hover:text-sky-600 ${
+                  selectedSubMenu === sub.label
+                    ? 'text-sky-600 font-semibold'
+                    : ''
+                }`}
+              >
+                {selectedSubMenu === sub.label && (
+                  <NavigateNextOutlinedIcon fontSize="small" />
+                )}
+                <p>{sub.label}</p>
+              </FormLabel>
+            </FormControl>
+          ))}
+        </Stack>
+      </AccordionDetails>
+    )}
+  </Accordion>
+))}
       </AccordionGroup>
 
     </Sheet>
@@ -388,7 +394,7 @@ const AdminDashMain = () => {
                 alt="User Avatar"
                 className="w-8 h-8"
               />
-              <span className="text-sm font-medium text-gray-800 dark:text-white">Pushpanjali Gupta</span>
+              <span className="text-sm font-medium text-gray-800 dark:text-white">{user?.name}</span>
             </button>
           </div>
         </nav>

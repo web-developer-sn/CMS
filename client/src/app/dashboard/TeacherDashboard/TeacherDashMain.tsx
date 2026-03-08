@@ -19,9 +19,9 @@ import ExamSchedule from './ExamSchedule';
 import SettingTeacher from './Settings';
 import { useRouter } from "next/navigation";
 import { useAppDispatch } from '@/redux/hooks';
-import { logout } from '@/redux/actions/authActions';
+import { logoutRequest } from '@/redux/actions/authActions';
 
-const TeacherDashMain = () => {
+const TeacherDashMain = ({ user }: { user: { name: string; role: string } }) => {
     const router = useRouter();
     const [collapsed, setCollapsed] = useState(false);
     const [selectedIndex, setSelectedIndex] = useState(0);
@@ -39,7 +39,7 @@ const TeacherDashMain = () => {
    const dispatch = useAppDispatch()
 const Logout = () => {
 
-  dispatch(logout())
+  dispatch(logoutRequest())
   localStorage.removeItem("token")
 
   router.push("/login")

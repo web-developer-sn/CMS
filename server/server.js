@@ -9,7 +9,8 @@ dotenv.config()
 const app = express();
 const allowedOrigins = [
   process.env.ORIGIN,
-  process.env.SERVER
+  process.env.SERVER,
+  "http://localhost:3000"
 ];
 app.use(cors({
   origin: allowedOrigins, 

@@ -21,51 +21,51 @@ export default function Home() {
   const [headerData] = React.useState<HeaderData>({
     home: {},
     header: {
-    logo: {
-      src: "/logo.png",
-      alt: "Logo",
-      name: "Hamara College",
+      logo: {
+        src: "/logo.png",
+        alt: "Logo",
+        name: "Hamara College",
+      },
+      navLinks: [
+        { label: "Home", href: "/" },
+        { label: "About", href: "/about" },
+        { label: "Academics", href: "/academics" },
+        { label: "Admissions", href: "/admissions" },
+        { label: "Departments", href: "/departments" },
+        { label: "Contact", href: "/contact" },
+      ],
+      applyButton: {
+        label: "Apply Now",
+        href: "/apply",
+      },
     },
-    navLinks: [
-      { label: "Home", href: "/" },
-      { label: "About", href: "/about" },
-      { label: "Academics", href: "/academics" },
-      { label: "Admissions", href: "/admissions" },
-      { label: "Departments", href: "/departments" },
-      { label: "Contact", href: "/contact" },
-    ],
-    applyButton: {
-      label: "Apply Now",
-      href: "/apply",
-    },
-  },
     footer: {
-       collegeInfo: {
-      name: "Hamara College",
-      logo: "/logo.png",
-      description:
-        "A center of excellence for learning, innovation, and leadership.",
-    },
-    quickLinks: [
-      { title: "Home", href: "/" },
-      { title: "About Us", href: "/about" },
-      { title: "Admissions", href: "/admissions" },
-      { title: "Departments", href: "/departments" },
-      { title: "Contact", href: "/contact" },
-    ],
-    contact: {
-      address: "📍 123 College Road, Patna, Bihar",
-      phone: "📞 +91 9876500000",
-      email: "✉️ info@hamaracollege.ac.in",
-    },
-    social: [
-      { platform: "Facebook", icon: "fab fa-facebook-f", href: "#" },
-      { platform: "Twitter", icon: "fab fa-twitter", href: "#" },
-      { platform: "Instagram", icon: "fab fa-instagram", href: "#" },
-    ],
+      collegeInfo: {
+        name: "Hamara College",
+        logo: "/logo.png",
+        description:
+          "A center of excellence for learning, innovation, and leadership.",
+      },
+      quickLinks: [
+        { title: "Home", href: "/" },
+        { title: "About Us", href: "/about" },
+        { title: "Admissions", href: "/admissions" },
+        { title: "Departments", href: "/departments" },
+        { title: "Contact", href: "/contact" },
+      ],
+      contact: {
+        address: "📍 123 College Road, Patna, Bihar",
+        phone: "📞 +91 9876500000",
+        email: "✉️ info@hamaracollege.ac.in",
+      },
+      social: [
+        { platform: "Facebook", icon: "fab fa-facebook-f", href: "#" },
+        { platform: "Twitter", icon: "fab fa-twitter", href: "#" },
+        { platform: "Instagram", icon: "fab fa-instagram", href: "#" },
+      ],
     },
   });
-  
+
   const footerData = {
     collegeInfo: {
       name: "Hamara College",
@@ -92,87 +92,82 @@ export default function Home() {
     ],
   };
   const [isLoading] = React.useState(false);
-// const url = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
-//   const fetchHeader = async () => {
-//     try {
-//       setLoading(true);
-//       const res = await axios.get(`${url}/api/header`);
+  // const url = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+  //   const fetchHeader = async () => {
+  //     try {
+  //       setLoading(true);
+  //       const res = await axios.get(`${url}/api/header`);
 
-//       if (JSON.stringify(res.data)) {
-//         setLoading(false);
-//         setHeaderData((x) => ({
-//           ...x,
-//           header: res.data,
-//         }));
-//       }
-//     }
-//      catch (error) {
-//       if(error){
-//  setLoading(false);
-//       }
-     
-//     }
-//   };
-//   const fetchHome = async () => {
-//     try {
-//       setLoading(true);
-//       const res = await axios.get(`${url}/api/home`);
-//       if (res.data) {
-//         setLoading(false);
-//         setHeaderData((x) => ({
-//           ...x,
+  //       if (JSON.stringify(res.data)) {
+  //         setLoading(false);
+  //         setHeaderData((x) => ({
+  //           ...x,
+  //           header: res.data,
+  //         }));
+  //       }
+  //     }
+  //      catch (error) {
+  //       if(error){
+  //  setLoading(false);
+  //       }
 
-//           home: res.data,
-//         }));
-//       }
-//     } catch (error) {
-//       if(error){
-//         setLoading(false);
-//       }
-//     }
-//   };
-//   const fetchFooter = async () => {
-//     try {
-//       setLoading(true);
-//       const res = await axios.get(`${url}/api/footer`);
-//       if (JSON.stringify(res.data)) {
-//         setLoading(false);
-//         setHeaderData((x) => ({
-//           ...x,
-//           footer: res.data,
-//         }));
-//       }
-//     } catch (error) {
-//        if(error){
-//         setLoading(false);
-//       }
-//     }
-//   };
+  //     }
+  //   };
+  //   const fetchHome = async () => {
+  //     try {
+  //       setLoading(true);
+  //       const res = await axios.get(`${url}/api/home`);
+  //       if (res.data) {
+  //         setLoading(false);
+  //         setHeaderData((x) => ({
+  //           ...x,
+
+  //           home: res.data,
+  //         }));
+  //       }
+  //     } catch (error) {
+  //       if(error){
+  //         setLoading(false);
+  //       }
+  //     }
+  //   };
+  //   const fetchFooter = async () => {
+  //     try {
+  //       setLoading(true);
+  //       const res = await axios.get(`${url}/api/footer`);
+  //       if (JSON.stringify(res.data)) {
+  //         setLoading(false);
+  //         setHeaderData((x) => ({
+  //           ...x,
+  //           footer: res.data,
+  //         }));
+  //       }
+  //     } catch (error) {
+  //        if(error){
+  //         setLoading(false);
+  //       }
+  //     }
+  //   };
   // React.useEffect(() => {
   //   fetchHeader();
   //   fetchHome();
   //   fetchFooter();
   // }, []);
-  if(isLoading){
-  
-
-  return (
-    <Loader/>
-  )
+  if (isLoading) {
+    return <Loader />;
   }
- return (
+  return (
     <main className="min-h-screen flex flex-col">
-     
       <Header header={headerData?.header} />
       {/* Hero Slider */}
       <div className="relative w-full h-[70vh] overflow-hidden">
         {/* {sliderImages.map((src, idx) => ( */}
-         <Image
-  src="/slider1.jpg"
-  alt="Slide 1"
-  fill
-  className="absolute w-full h-full object-cover transition-opacity duration-1000 opacity-0"
-/>
+        <Image
+          src="/slider1.jpg"
+          alt="Slide 1"
+          fill
+          className="absolute w-full h-full object-cover transition-opacity duration-1000 opacity-0"
+        />
         {/* ))} */}
         <div className="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center text-center text-white px-4">
           <h1 className="text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg">
@@ -197,7 +192,9 @@ export default function Home() {
             About hamara College
           </h2>
           <p className="text-gray-700 mb-6">
-            We are dedicated to fostering academic excellence, personal growth, and professional development. Our world-class faculty and state-of-the-art facilities prepare students to lead and innovate.
+            We are dedicated to fostering academic excellence, personal growth,
+            and professional development. Our world-class faculty and
+            state-of-the-art facilities prepare students to lead and innovate.
           </p>
           <a
             href="/about"
@@ -209,7 +206,7 @@ export default function Home() {
       </section>
 
       {/* Programs Section */}
-     <section className="py-20 px-6 bg-blue-50 text-center">
+      <section className="py-20 px-6 bg-blue-50 text-center">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-blue-800 mb-10">
             Our Programs
@@ -218,7 +215,8 @@ export default function Home() {
             <div className="bg-white p-6 rounded-xl shadow-md">
               <h3 className="text-xl font-bold mb-2">Undergraduate</h3>
               <p className="text-gray-600 mb-4">
-                Explore our diverse undergraduate programs that build strong foundations for your future.
+                Explore our diverse undergraduate programs that build strong
+                foundations for your future.
               </p>
               <a
                 href="/programs#undergraduate"
@@ -230,7 +228,8 @@ export default function Home() {
             <div className="bg-white p-6 rounded-xl shadow-md">
               <h3 className="text-xl font-bold mb-2">Postgraduate</h3>
               <p className="text-gray-600 mb-4">
-                Advance your career with our industry-focused postgraduate courses.
+                Advance your career with our industry-focused postgraduate
+                courses.
               </p>
               <a
                 href="/programs#postgraduate"
@@ -242,7 +241,8 @@ export default function Home() {
             <div className="bg-white p-6 rounded-xl shadow-md">
               <h3 className="text-xl font-bold mb-2">Research</h3>
               <p className="text-gray-600 mb-4">
-                Join our innovative research community and contribute to global knowledge.
+                Join our innovative research community and contribute to global
+                knowledge.
               </p>
               <a
                 href="/programs#research"
@@ -255,13 +255,14 @@ export default function Home() {
         </div>
       </section>
 
-
-
       {/* CTA Banner */}
-   <section className="bg-blue-600 py-16 text-center text-white">
-        <h3 className="text-3xl font-bold mb-4">Ready to Begin Your Journey?</h3>
+      <section className="bg-blue-600 py-16 text-center text-white">
+        <h3 className="text-3xl font-bold mb-4">
+          Ready to Begin Your Journey?
+        </h3>
         <p className="mb-6">
-          Join thousands of students who chose hamara College for a brighter future.
+          Join thousands of students who chose hamara College for a brighter
+          future.
         </p>
         <a
           href="/apply"
@@ -270,7 +271,6 @@ export default function Home() {
           Apply Now
         </a>
       </section>
-
 
       <Footer footer={footerData} />
     </main>

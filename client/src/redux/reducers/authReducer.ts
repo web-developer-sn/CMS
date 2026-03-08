@@ -3,7 +3,7 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
-  LOGOUT
+  LOGOUT_SUCCESS
 } from "../actions/authActions"
 
 export interface ActionType {
@@ -31,12 +31,13 @@ export default function authReducer(
       }
 
     case LOGIN_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        user: action.payload??null,
-        isAuthenticated: true
-      }
+    case LOGIN_SUCCESS:
+  return {
+    ...state,
+    user: action.payload??null,
+    isAuthenticated: true,
+    loading: false
+  }
 
     case LOGIN_FAILURE:
       return {
@@ -46,11 +47,12 @@ export default function authReducer(
         isAuthenticated: false
       }
 
-    case LOGOUT:
-      return {
-        ...initialState
-      }
-
+ case LOGOUT_SUCCESS:
+  return {
+    user: null,
+    isAuthenticated: false,
+    loading: false
+  }
     default:
       return state
   }

@@ -4,6 +4,7 @@ import EmailIcon from '@mui/icons-material/Email';
 import LockIcon from '@mui/icons-material/Lock';
 import PersonIcon from '@mui/icons-material/Person';
 import axios from 'axios';
+import Image from 'next/image';
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 export default function Register() {
@@ -33,13 +34,16 @@ export default function Register() {
 
     <div className="min-h-screen w-full flex flex-col md:flex-row">
       {/* Left Side - Image */}
-      <div className="w-full md:w-1/2 h-1/2 md:h-screen">
-        {/* <img
+      <div className=" relative w-full md:w-1/2 h-64 md:h-screen">
+        <Image
           src="/bg-01.png"
           alt="ChitChat Logo"
-          className="w-full h-full object-cover"
-        /> */}
+           fill
+        priority
+          className="object-cover"
+        />
       </div>
+   
 
       {/* Right Side - Login Form */}
       <div className="w-full md:w-1/2 h-1/2 md:h-screen flex items-center justify-center p-4">
