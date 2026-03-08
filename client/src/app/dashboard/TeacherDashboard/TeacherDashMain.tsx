@@ -1,25 +1,25 @@
 'use client';
 
-import { useState } from 'react';
-import { Sheet, List, ListItem, ListItemButton, ListItemDecorator, Typography, Drawer } from '@mui/joy';
+import { logoutRequest } from '@/redux/actions/authActions';
+import { useAppDispatch } from '@/redux/hooks';
+import AssignmentTurnedInOutlinedIcon from '@mui/icons-material/AssignmentTurnedInOutlined';
+import DashboardCustomizeOutlinedIcon from '@mui/icons-material/DashboardCustomizeOutlined';
+import EventNoteOutlinedIcon from '@mui/icons-material/EventNoteOutlined';
+import FullscreenIcon from '@mui/icons-material/Fullscreen';
+import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined';
+import NotificationsActiveOutlinedIcon from '@mui/icons-material/NotificationsActiveOutlined';
+import PowerSettingsNewOutlinedIcon from '@mui/icons-material/PowerSettingsNewOutlined';
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import { Drawer, List, ListItem, ListItemButton, ListItemDecorator, Sheet, Typography } from '@mui/joy';
 import { Avatar, useMediaQuery } from '@mui/material';
 import { Menu } from 'lucide-react';
-import FullscreenIcon from '@mui/icons-material/Fullscreen';
-import NotificationsActiveOutlinedIcon from '@mui/icons-material/NotificationsActiveOutlined';
-import DashboardCustomizeOutlinedIcon from '@mui/icons-material/DashboardCustomizeOutlined';
-import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined';
-import AssignmentTurnedInOutlinedIcon from '@mui/icons-material/AssignmentTurnedInOutlined';
-import EventNoteOutlinedIcon from '@mui/icons-material/EventNoteOutlined';
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
-import PowerSettingsNewOutlinedIcon from '@mui/icons-material/PowerSettingsNewOutlined';
-import TeacherDashBoard from './Dashboard';
-import Lectures from './Lectures';
-import LeaveRequestTeacher from './LeaveRequest';
-import ExamSchedule from './ExamSchedule';
-import SettingTeacher from './Settings';
 import { useRouter } from "next/navigation";
-import { useAppDispatch } from '@/redux/hooks';
-import { logoutRequest } from '@/redux/actions/authActions';
+import { useState } from 'react';
+import TeacherDashBoard from './Dashboard';
+import ExamSchedule from './ExamSchedule';
+import LeaveRequestTeacher from './LeaveRequest';
+import Lectures from './Lectures';
+import SettingTeacher from './Settings';
 
 const TeacherDashMain = ({ user }: { user: { name: string; role: string } }) => {
     const router = useRouter();
@@ -36,13 +36,14 @@ const TeacherDashMain = ({ user }: { user: { name: string; role: string } }) => 
         { label: 'Settings', icon: <SettingsOutlinedIcon fontSize="small" />, path: '#' },
         { label: 'Logout', icon: <PowerSettingsNewOutlinedIcon fontSize="small" />, path: '#' },
     ];
-   const dispatch = useAppDispatch()
+
 const Logout = () => {
 
-  dispatch(logoutRequest())
-  localStorage.removeItem("token")
+ const dispatch=useAppDispatch();
+    const Logaout = () => {
+dispatch(logoutRequest())
 
-  router.push("/login")
+    }
 
 }
      const handleOnFullScren=()=>{
@@ -74,9 +75,9 @@ const Logout = () => {
                         sx={{ borderRadius: 2, width: 150, height: 150 }}
                     />
                     <Typography level="title-md" className="font-semibold">
-                        Pushpanjali Gupta
+                        {user.name}
                     </Typography>
-                    <p className="text-sm text-gray-500 dark:text-gray-300">Teacher</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-300">{user.role}</p>
                 </div>
             )}
 
@@ -160,7 +161,7 @@ const Logout = () => {
                                 alt="User Avatar"
                                 className="w-8 h-8"
                             />
-                            <span className="text-sm font-medium text-gray-800 dark:text-white">Pushpanjali Gupta</span>
+                            <span className="text-sm font-medium text-gray-800 dark:text-white">{user.name}</span>
                         </button>
                     </div>
                 </nav>

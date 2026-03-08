@@ -164,7 +164,7 @@ dispatch(logoutRequest())
                                 alt="User Avatar"
                                 className="w-8 h-8"
                             />
-                            <span className="text-sm font-medium text-gray-800 dark:text-white">Pushpanjali Gupta</span>
+                            <span className="text-sm font-medium text-gray-800 dark:text-white">{user.name}</span>
                         </button>
                     </div>
                 </nav>
