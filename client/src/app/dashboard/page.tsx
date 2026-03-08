@@ -30,7 +30,7 @@ const Dashboard = () => {
         {role === 'student' && <StudentDashMain user={user} />}
 
         {!['admin','teacher','student'].includes(role) && (
-         <div className="flex justify-center md:justify-start">
+         <div className="flex justify-center items-center min-h-screen">
   <button
     onClick={() => router.push("/login")}
     className="px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition"
