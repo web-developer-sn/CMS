@@ -13,15 +13,7 @@ export default function Register() {
   const { register, handleSubmit } = useForm<{name: string, email: string, password: string, role: string}>();
   const router = useRouter();
 
-  // const onSubmit = (data: any) => {
-  //   dispatch(registerRequest(data.name, data.email, data.password, data.role));
 
-  //   if (type === "REGISTER_SUCCESS") {
-  //     router.push('/login')
-  //   }
-  // };
-
-  const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/";
   const onSubmit = async (data:{name: string, email: string, password: string, role: string}) => {
     const res = await axios.post(`/api/auth/register`, { name: data?.name, email: data?.email, password: data?.password, role: data?.role });
     console.log("user", res)
