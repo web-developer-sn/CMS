@@ -7,9 +7,10 @@ import StudentDashMain from './studentDashboard/StudentDashMain'
 import Loader from '../lib/loader'
 import ProtectedRoute from '../components/ProtectedRoute'
 import { useAppSelector } from '@/redux/hooks'
+import { useRouter } from 'next/navigation'
 
 const Dashboard = () => {
-
+  const router=useRouter();
   const user = useAppSelector((state) => state.auth.user)
   const loading = useAppSelector((state) => state.auth.loading)
 
@@ -19,9 +20,7 @@ const Dashboard = () => {
     return <Loader />
   }
 
-  // if (!role) {
-  //   return <Loader />
-  // }
+  
 
   return (
     <ProtectedRoute>
@@ -31,7 +30,12 @@ const Dashboard = () => {
         {role === 'student' && <StudentDashMain user={user} />}
 
         {!['admin','teacher','student'].includes(role) && (
-          <div>Unknown role: "{role}"</div>
+          <button
+                    onClick={() => router.push("/login")}
+                    className="px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition"
+                >
+                     Login
+                </button>
         )}
       </div>
     </ProtectedRoute>
