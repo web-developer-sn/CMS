@@ -30,12 +30,14 @@ const Dashboard = () => {
         {role === 'student' && <StudentDashMain user={user} />}
 
         {!['admin','teacher','student'].includes(role) && (
-          <button
-                    onClick={() => router.push("/login")}
-                    className="px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition"
-                >
-                     Login
-                </button>
+         <div className="flex justify-center md:justify-start">
+  <button
+    onClick={() => router.push("/login")}
+    className="px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition"
+  >
+    Login
+  </button>
+</div>
         )}
       </div>
     </ProtectedRoute>
