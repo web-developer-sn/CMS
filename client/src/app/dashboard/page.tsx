@@ -19,9 +19,9 @@ const Dashboard = () => {
     return <Loader />
   }
 
-  if (!role) {
-    return <Loader />
-  }
+  // if (!role) {
+  //   return <Loader />
+  // }
 
   return (
     <ProtectedRoute>
