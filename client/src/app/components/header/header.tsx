@@ -13,7 +13,11 @@ export default function Header(props:IProps) {
       <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center gap-2">
-          {/* <img src={logo?.src} alt="Logo"  className="h-10 w-10" /> */}
+   <img 
+  src={logo?.src} 
+  alt="Logo"
+  className="h-12 w-12 rounded-2xl object-cover shadow-lg hover:scale-105 transition-all duration-300"
+/>
           <span className="text-xl md:text-2xl font-bold text-blue-800">
             {logo?.name}
           </span>
